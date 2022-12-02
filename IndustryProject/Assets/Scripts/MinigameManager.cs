@@ -65,7 +65,6 @@ public class MinigameManager : MonoBehaviour
         }
         UpdateAnswerText();
         UpdateSum();
-        Debug.Log(b);
     }
 
     public void SetOperators()
@@ -119,16 +118,31 @@ public class MinigameManager : MonoBehaviour
         sumText.text = sumString;
     }
 
-    public void UpdateSum()
+    public float UpdateSumOperator()
     {
         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
         if (clickedButton.name == "+")
-            sum = a + b;
+            return a + b;
         else if (clickedButton.name == "-")
-            sum = a - b;
+            return a - b;
         else if (clickedButton.name == "*")
-            sum = a * b;
+            return a * b;
         else if (clickedButton.name == "/")
+            return a / b;
+        else
+            return 0;
+    }
+
+    public void UpdateSum()
+    {
+        sum = UpdateSumOperator();
+        if (mathOperator == "+")
+            sum = a + b;
+        else if (mathOperator == "-")
+            sum = a - b;
+        else if (mathOperator == "*")
+            sum = a * b;
+        else if (mathOperator == "/")
             sum = a / b;
     }
 
@@ -191,14 +205,16 @@ public class MinigameManager : MonoBehaviour
 
     public void CheckAnswer()
     {
+        bool yes = true;
         if (sum == questionAnswer)
         {
-            Debug.Log("Nailed it");
+            if (yes) 
+            {
+                Debug.Log("Nailed it");
+                yes = false;
+            }
+            
         }
     }
 
-    public void Clicky()
-    {
-        Debug.Log(sum + " " + questionAnswer);
-    }
 }
