@@ -804,6 +804,8 @@ MonoBehaviour:
   - {fileID: 743089880578667522}
   - {fileID: 743089881049089190}
   sumText: {fileID: 743089881344569741}
+  timesTableStart: 1
+  timesTableEnd: 21
 --- !u!1 &743089880636870118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1436,7 @@ GameObject:
   - component: {fileID: 743089881049089195}
   - component: {fileID: 743089881049089192}
   m_Layer: 5
-  m_Name: DevideButton
+  m_Name: DivideButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

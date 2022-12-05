@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -22,6 +24,11 @@ public class MinigameManager : MonoBehaviour
     string mathOperator = "";
     bool aTurn;
     bool bTurn;
+   
+    /// the times table you want to generate from. if this is 1 the smallest times table will be 1.
+    public int timesTableStart = 1;
+    /// the times table you want to generate to. if this is 11 the biggest times table will be 10.
+    public int timesTableEnd = 21;
 
     public enum MathOperators
     {
@@ -34,18 +41,8 @@ public class MinigameManager : MonoBehaviour
     MathOperators mathOperators;
 
     void Start()
-    {
-        aTurn = true;
-        bTurn = false;
-        SetButtonValues();
-        MakeSum();
-        sumString = a + " " + mathOperator + " " + b + " = " + questionAnswer;
-        sumText.text = sumString;
-    }
-
-    void Update()
-    {
-        CheckAnswer();
+    { 
+        StartGame();
     }
 
     public void SetNumbers()
@@ -81,7 +78,7 @@ public class MinigameManager : MonoBehaviour
         int counter = 0;
         foreach (var button in numberButtons)
         {
-            rnd = Random.Range(1, 11);
+            rnd = Random.Range(timesTableStart, timesTableEnd);
             button.GetComponent<SetButtonValue>().SetAllNumberValues(rnd);
             values.Add(rnd);
         }
@@ -114,6 +111,7 @@ public class MinigameManager : MonoBehaviour
 
     public void UpdateAnswerText()
     {
+        questionAnswer = (float)Math.Round(questionAnswer, 2);
         sumString = a + " " + mathOperator + " " + b + " = " + questionAnswer;
         sumText.text = sumString;
     }
@@ -205,16 +203,26 @@ public class MinigameManager : MonoBehaviour
 
     public void CheckAnswer()
     {
-        bool yes = true;
-        if (sum == questionAnswer)
-        {
-            if (yes) 
-            {
-                Debug.Log("Nailed it");
-                yes = false;
-            }
-            
+        if ((float)Math.Round(sum,2) == questionAnswer)
+        { 
+            Debug.Log("Nailed it");
+            StartGame();
         }
+    }
+
+    public void StartGame()
+    {
+        aTurn = true;
+        bTurn = false;
+        a = 0;
+        b = 0;
+        mathOperator = "";
+        values.Clear();
+        SetButtonValues();
+        MakeSum();
+        questionAnswer = (float)Math.Round(questionAnswer, 2);
+        sumString = " = " + questionAnswer;
+        sumText.text = sumString;
     }
 
 }

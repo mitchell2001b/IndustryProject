@@ -331,6 +331,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 743089880595684371, guid: fc90d5ae9d950594db0e0b7b6411c256, type: 3}
+      propertyPath: timesTableEnd
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 743089880595684371, guid: fc90d5ae9d950594db0e0b7b6411c256, type: 3}
+      propertyPath: timesTableStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 743089880895125671, guid: fc90d5ae9d950594db0e0b7b6411c256, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
