@@ -14,7 +14,6 @@ public class MinigameManager : MonoBehaviour
 {
     [SerializeField] GameObject[] numberButtons;
     [SerializeField] GameObject[] operatorButtons;
-    [SerializeField] public readonly List<int> values = new();
     public TextMeshProUGUI sumText;
     float a;
     float b;
@@ -78,13 +77,13 @@ public class MinigameManager : MonoBehaviour
         {
             rnd = Random.Range(timesTableStart, timesTableEnd);
             button.GetComponent<SetButtonValue>().SetNumberButtonValue(rnd);
-            values.Add(rnd);
+            GetComponent<SumGeneration>().values.Add(rnd);
         }
         foreach (var button in operatorButtons)
         {
-            counter++;
             string op = GetComponent<UIManager>().SetOperator(counter);
             button.GetComponent<SetButtonValue>().SetOperatorButtonValue(op);
+            counter++;
         }
     }
 
@@ -98,61 +97,6 @@ public class MinigameManager : MonoBehaviour
             sum = a * b;
         else if (mathOperator == "/")
             sum = a / b;
-    }
-
-    public void MakeSum()
-    {
-        int rnd;
-        int previousNumber = 0;
-        float number1 = 0;
-        float number2 = 0;
-        for (int i = 0; i < 2; i++)
-        {
-            rnd = Random.Range(0, numberButtons.Length);
-            if (i == 0)
-            {
-                number1 = values[rnd];
-                previousNumber = rnd;
-            }
-            else if (i == 1)
-            {
-                if (previousNumber != rnd)
-                    number2 = values[rnd];
-                else
-                {
-                    while (previousNumber == rnd)
-                    {
-                        rnd = Random.Range(0, numberButtons.Length);
-                        number2 = values[rnd];
-                    }
-                }
-            }
-        }
-        MakeAnswer(number1, number2);
-        Debug.Log(number1 + " " + number2);
-    }
-
-    public void MakeAnswer(float left, float right)
-    {
-        MathOperators mop = (MathOperators)Random.Range(0, 4);
-        Debug.Log(mop);
-        switch (mop)
-        {
-            case MathOperators.plus:
-                questionAnswer = left + right;
-                break;
-            case MathOperators.min:
-                questionAnswer = left - right;
-                break;
-            case MathOperators.times:
-                questionAnswer = left * right;
-                break;
-            case MathOperators.divided:
-                questionAnswer = left / right;
-                break;
-            default:
-                break;
-        }
     }
 
     public void CheckAnswer()
@@ -171,12 +115,11 @@ public class MinigameManager : MonoBehaviour
         a = 0;
         b = 0;
         mathOperator = "";
-        values.Clear();
+        GetComponent<SumGeneration>().values.Clear();
         SetButtonValues();
-        MakeSum();
-        questionAnswer = (float)Math.Round(questionAnswer, 2);
+        GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
+        questionAnswer = GetComponent<SumGeneration>().answer;
         sumString = " = " + questionAnswer;
         sumText.text = sumString;
     }
-
 }
