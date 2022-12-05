@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class SumGeneration : MonoBehaviour
 {
     public readonly List<int> values = new();
-    public float answer;
+    public float answer { get; private set; }
 
     public enum MathOperators
     {
