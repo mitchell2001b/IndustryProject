@@ -38,8 +38,6 @@ public class MinigameManager : MonoBehaviour
         divided
     }
 
-    MathOperators mathOperators;
-
     void Start()
     { 
         StartGame();
@@ -60,7 +58,7 @@ public class MinigameManager : MonoBehaviour
             aTurn = true;
             bTurn = false;
         }
-        UpdateAnswerText();
+        GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
         UpdateSum();
     }
 
@@ -68,7 +66,7 @@ public class MinigameManager : MonoBehaviour
     {
         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
         mathOperator = clickedButton.name;
-        UpdateAnswerText();
+        GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
         UpdateSum();
     }
 
@@ -79,61 +77,19 @@ public class MinigameManager : MonoBehaviour
         foreach (var button in numberButtons)
         {
             rnd = Random.Range(timesTableStart, timesTableEnd);
-            button.GetComponent<SetButtonValue>().SetAllNumberValues(rnd);
+            button.GetComponent<SetButtonValue>().SetNumberButtonValue(rnd);
             values.Add(rnd);
         }
         foreach (var button in operatorButtons)
         {
-            string op = "";
-            if (counter == 0)
-            {
-                op = "+";
-                counter++;
-            }
-            else if (counter == 1)
-            {
-                op = "-";
-                counter++;
-            }
-            else if (counter == 2)
-            {
-                op = "*";
-                counter++;
-            }
-            else if (counter == 3)
-            {
-                op = "/";
-                counter = 0;
-            }
-            button.GetComponent<SetButtonValue>().SetAllOperatorValues(op);
+            counter++;
+            string op = GetComponent<UIManager>().SetOperator(counter);
+            button.GetComponent<SetButtonValue>().SetOperatorButtonValue(op);
         }
-    }
-
-    public void UpdateAnswerText()
-    {
-        questionAnswer = (float)Math.Round(questionAnswer, 2);
-        sumString = a + " " + mathOperator + " " + b + " = " + questionAnswer;
-        sumText.text = sumString;
-    }
-
-    public float UpdateSumOperator()
-    {
-        GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
-        if (clickedButton.name == "+")
-            return a + b;
-        else if (clickedButton.name == "-")
-            return a - b;
-        else if (clickedButton.name == "*")
-            return a * b;
-        else if (clickedButton.name == "/")
-            return a / b;
-        else
-            return 0;
     }
 
     public void UpdateSum()
     {
-        sum = UpdateSumOperator();
         if (mathOperator == "+")
             sum = a + b;
         else if (mathOperator == "-")
@@ -161,9 +117,7 @@ public class MinigameManager : MonoBehaviour
             else if (i == 1)
             {
                 if (previousNumber != rnd)
-                {
                     number2 = values[rnd];
-                }
                 else
                 {
                     while (previousNumber == rnd)

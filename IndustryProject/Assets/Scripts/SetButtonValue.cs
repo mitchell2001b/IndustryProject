@@ -10,14 +10,14 @@ public class SetButtonValue : MonoBehaviour
     public string buttonTextNumber;
     public int value;
 
-    public void SetAllNumberValues(int number)
+    public void SetNumberButtonValue(int number)
     {
         gameObject.name = number.ToString();
         value = number;
         GetComponentInChildren<TMP_Text>().text = value.ToString();
     }
 
-    public void SetAllOperatorValues(string value)
+    public void SetOperatorButtonValue(string value)
     {
         gameObject.name = value;
         GetComponentInChildren<TMP_Text>().text = value;
