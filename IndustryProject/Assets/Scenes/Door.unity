@@ -6303,7 +6303,7 @@ MonoBehaviour:
   - {fileID: 1471748985}
   - {fileID: 748206864}
   sumText: {fileID: 241180483}
-  questionCount: 0
+  questionCount: 2
   timesTableStart: 1
   timesTableEnd: 21
 --- !u!114 &1001208703
