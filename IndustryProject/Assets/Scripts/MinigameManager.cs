@@ -12,6 +12,8 @@ using Random = UnityEngine.Random;
 
 public class MinigameManager : MonoBehaviour
 {
+    [SerializeField] MinigameTransitionHandler minigameTransitionHandler;
+    [SerializeField] KeyTracker keyTracker;
     [SerializeField] GameObject[] numberButtons;
     [SerializeField] GameObject[] operatorButtons;
     public TextMeshProUGUI sumText;
@@ -23,12 +25,14 @@ public class MinigameManager : MonoBehaviour
     string mathOperator = "";
     bool aTurn;
     bool bTurn;
-   
+    [SerializeField] int questionCount;
+    private int correctQuestionCount = 0;
     /// the times table you want to generate from. if this is 1 the smallest times table will be 1.
     public int timesTableStart = 1;
     /// the times table you want to generate to. if this is 11 the biggest times table will be 10.
     public int timesTableEnd = 21;
 
+    
     public enum MathOperators
     {
         plus,
@@ -102,9 +106,20 @@ public class MinigameManager : MonoBehaviour
     public void CheckAnswer()
     {
         if ((float)Math.Round(sum,2) == questionAnswer)
-        { 
-            Debug.Log("Nailed it");
-            StartGame();
+        {
+            correctQuestionCount++;
+            if(correctQuestionCount >= questionCount)
+            {
+                minigameTransitionHandler.RoomTransition(MinigameTransitionHandler.RoomType.sumPuzzle);
+                keyTracker.PickupKey();
+                Debug.Log("Nailed it");
+            }
+            else
+            {
+                StartGame();
+            }
+            
+            
         }
     }
 
