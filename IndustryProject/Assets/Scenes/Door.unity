@@ -405,6 +405,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.298
       objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 879322726}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackgroundChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeBackground, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
 --- !u!1 &43153461
@@ -575,6 +603,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &53755593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2857349830681378085, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+  m_PrefabInstance: {fileID: 32480971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63213947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,6 +2691,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 5e3345b8092602445a8efd4b16afd379, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+--- !u!1 &615398361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2857349830681378085, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+  m_PrefabInstance: {fileID: 1837422727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &631919991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2826,6 +2864,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &652875940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2857349830681378085, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+  m_PrefabInstance: {fileID: 1439916645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &652875941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652875940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd2c776a00acda47a3cc03589b3b8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room1: {fileID: 1356105030}
+  room2: {fileID: 1967121233}
 --- !u!1 &655510292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,6 +3395,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.229
       objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1742379453}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackgroundChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeBackground, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
 --- !u!1 &858005222
@@ -3429,6 +3514,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2857349830681378086, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
   m_PrefabInstance: {fileID: 32480971}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &879322726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53755593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd2c776a00acda47a3cc03589b3b8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room1: {fileID: 1588651560}
+  room2: {fileID: 1356105030}
 --- !u!1 &898692054
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,6 +4224,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2857349830681378086, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
   m_PrefabInstance: {fileID: 1837422727}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1007507406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615398361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd2c776a00acda47a3cc03589b3b8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room1: {fileID: 1356105030}
+  room2: {fileID: 1588651560}
 --- !u!1 &1011690074
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,6 +6046,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1379326995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2857349830681378085, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+  m_PrefabInstance: {fileID: 2857349830946492760}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1390326302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6236,6 +6354,34 @@ PrefabInstance:
     - target: {fileID: 2857349830681378086, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 652875941}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackgroundChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeBackground, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
@@ -7533,6 +7679,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1697807247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2857349830681378085, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+  m_PrefabInstance: {fileID: 1943704438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1697807251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697807247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd2c776a00acda47a3cc03589b3b8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room1: {fileID: 1105818680}
+  room2: {fileID: 1356105030}
 --- !u!1001 &1701114987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8001,6 +8166,25 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!1 &1742379449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2857349830681378085, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+  m_PrefabInstance: {fileID: 856445387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1742379453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742379449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd2c776a00acda47a3cc03589b3b8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room1: {fileID: 1967121233}
+  room2: {fileID: 1356105030}
 --- !u!1 &1761678805
 GameObject:
   m_ObjectHideFlags: 0
@@ -8449,6 +8633,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.319
       objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1007507406}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackgroundChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeBackground, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
 --- !u!1 &1843570230
@@ -8692,6 +8904,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2857349830681378086, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
   m_PrefabInstance: {fileID: 2857349830946492760}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885318271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379326995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd2c776a00acda47a3cc03589b3b8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room1: {fileID: 1356105030}
+  room2: {fileID: 1105818680}
 --- !u!1 &1925222717
 GameObject:
   m_ObjectHideFlags: 0
@@ -9093,6 +9319,34 @@ PrefabInstance:
     - target: {fileID: 2857349830681378086, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.445
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1697807251}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackgroundChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeBackground, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
@@ -10618,6 +10872,34 @@ PrefabInstance:
     - target: {fileID: 2857349830681378086, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885318271}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackgroundChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeBackground, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857349830681378087, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abafd875165b24bbfe174f23bc9386, type: 3}
