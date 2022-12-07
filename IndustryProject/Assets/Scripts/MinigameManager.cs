@@ -14,7 +14,6 @@ using UnityEngine.Events;
 public class MinigameManager : MonoBehaviour
 {
     [SerializeField] MinigameTransitionHandler minigameTransitionHandler;
-    [SerializeField] KeyTracker keyTracker;
     [SerializeField] GameObject[] numberButtons;
     [SerializeField] GameObject[] operatorButtons;
     public TextMeshProUGUI sumText;
@@ -113,9 +112,7 @@ public class MinigameManager : MonoBehaviour
             correctQuestionCount++;
             if(correctQuestionCount >= questionCount)
             {
-                minigameTransitionHandler.RoomTransition(MinigameTransitionHandler.RoomType.sumPuzzle);
-                // keyTracker.PickupKey();
-                // Debug.Log("Nailed it");
+                minigameTransitionHandler.RoomTransition(MinigameTransitionHandler.RoomType.sumPuzzle);               
                 onComplete?.Invoke();
             }
             else
