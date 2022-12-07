@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
+using UnityEngine.Events;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class MinigameManager : MonoBehaviour
     public int timesTableStart = 1;
     /// the times table you want to generate to. if this is 11 the biggest times table will be 10.
     public int timesTableEnd = 21;
+
+    public UnityEvent onComplete;
 
     
     public enum MathOperators
@@ -111,15 +114,14 @@ public class MinigameManager : MonoBehaviour
             if(correctQuestionCount >= questionCount)
             {
                 minigameTransitionHandler.RoomTransition(MinigameTransitionHandler.RoomType.sumPuzzle);
-                keyTracker.PickupKey();
-                Debug.Log("Nailed it");
+                // keyTracker.PickupKey();
+                // Debug.Log("Nailed it");
+                onComplete?.Invoke();
             }
             else
             {
                 StartGame();
             }
-            
-            
         }
     }
 
