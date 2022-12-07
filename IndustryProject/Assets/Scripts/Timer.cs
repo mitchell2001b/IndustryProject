@@ -19,10 +19,12 @@ public class Timer : MonoBehaviour
     [Header("What happens when the timer ends")]
     [SerializeField] private UnityEvent onTimerEnd; // the event that gets called when the timer reaches 0
 
-    private void Awake()
+
+    void Start()
     {
-        Reset(); // reset timeLeft and timerOn
+        Reset();
     }
+    
 
     private void FixedUpdate()
     {
