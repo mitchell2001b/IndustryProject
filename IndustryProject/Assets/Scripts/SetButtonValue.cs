@@ -17,11 +17,11 @@ public class SetButtonValue : MonoBehaviour
         GetComponentInChildren<TMP_Text>().text = value.ToString();
     }
 
-    public void SetNumberButtonValue(float number, string metric)
+    public void SetNumberButtonValue(float number, string metricCatagory, string metric)
     {
         gameObject.name = number.ToString();
         value = number;
-        GetComponentInChildren<TMP_Text>().text = value.ToString() + " " + metric;
+        GetComponentInChildren<TMP_Text>().text = value.ToString() + " " + metricCatagory + metric;
     }
 
     public void SetOperatorButtonValue(string value)

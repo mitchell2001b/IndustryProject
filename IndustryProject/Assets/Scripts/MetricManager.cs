@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MetricManager : MonoBehaviour
 {
     [SerializeField] GameObject[] numberButtons;
     public readonly List<float> values = new();
+    public readonly List<MetricSubcatagory> metrics = new();
     public readonly List<float> convertedValues = new();
     public readonly List<string> convertedValuesText = new();
+    string convertedValue;
     public float sum;
     public int playerAmount = 2;
     public TextMeshProUGUI sumText;
     private string metricText;
-
+    private string convertionOptions;
     enum MetricSystem
     {
         meter,
@@ -32,22 +35,7 @@ public class MetricManager : MonoBehaviour
         hecta,
         kilo
     }
-
-    void Start()
-    {
-        GenerateValues();
-        GetMetricValues();
-        MakeMetricSum();
-        
-        SetButtonValues();
-        sumText.text = sum.ToString();
-    }
-
-    void Update()
-    {
-
-    }
-
+    
     public void GenerateValues()
     {
         for (int i = 0; i < 6; i++)
@@ -55,7 +43,6 @@ public class MetricManager : MonoBehaviour
             values.Add(Random.Range(1, 101));
         }
     }
-
     public int CheckAnswerAmount()
     {
         if (playerAmount > 2)
@@ -64,6 +51,31 @@ public class MetricManager : MonoBehaviour
         }
         return 2;
     }
+
+    public void GetUasableMetrics()
+    {
+        int rnd = Random.Range(0, 7);
+        if (rnd == 0)
+        {
+            metrics.Add((MetricSubcatagory)rnd + 1);
+            metrics.Add((MetricSubcatagory)rnd);
+            metrics.Add((MetricSubcatagory)rnd + 2);
+            convertionOptions = "milli";
+        }
+        else if (rnd == 6)
+        {
+            metrics.Add((MetricSubcatagory)rnd - 1);
+            metrics.Add((MetricSubcatagory)rnd);
+            metrics.Add((MetricSubcatagory)rnd - 2);
+            convertionOptions = "kilo";
+        }
+        else
+        {
+            metrics.Add((MetricSubcatagory)rnd - 1);
+            metrics.Add((MetricSubcatagory)rnd);
+            metrics.Add((MetricSubcatagory)rnd + 1);
+        }
+    }   
 
     public void MakeMetricSum()
     {
@@ -91,6 +103,52 @@ public class MetricManager : MonoBehaviour
         sum = answer;
     }
 
+    public void ConvertAnswerButtonValues()
+    {
+        int rnd;
+        foreach (var number in values)
+        {
+            rnd = Random.Range(0, 3);
+            ConvertToMetric(rnd, number);
+            convertedValuesText.Add(SetMetricText(metrics[rnd]));
+            convertedValues.Add(ConvertToMetric(rnd, number));
+        }
+    }
+
+    public void ConvertSum()
+    {
+        //int rnd = Random.Range(0, 3);
+        MetricSubcatagory subcatagory = metrics[1];
+        sum = ConvertToMetric(1, sum);
+        convertedValue = SetMetricText(subcatagory);
+    }
+
+
+
+
+    void Start()
+    {
+        Go();
+    }
+
+    public void Go()
+    {
+        values.Clear();
+        convertedValues.Clear();
+        convertedValuesText.Clear();
+        metrics.Clear();
+        metricText = GenerateMetric();
+        GetUasableMetrics();
+        GenerateValues();
+        ConvertAnswerButtonValues();
+        MakeMetricSum();
+        ConvertSum();
+        Debug.Log(convertedValuesText.Count);
+        SetButtonValues();
+        sumText.text = sum.ToString() + " " + convertedValue + metricText;
+    }
+
+
     public void SetButtonValues()
     {
         int counter = 0;
@@ -98,44 +156,44 @@ public class MetricManager : MonoBehaviour
         {
             button.GetComponent<SetButtonValue>().SetNumberButtonValue(
                 convertedValues[counter], 
-                convertedValuesText[counter]);
+                convertedValuesText[counter],
+                metricText);
             counter++;
         }
     }
 
-    public void GetMetricValues()
+    public float ConvertToMetric(int random, float number)
     {
-        int rnd;
-        MetricSubcatagory subcatagory;
-        foreach (var number in values)
+        if (convertionOptions == "milli")
         {
-            rnd = Random.Range(0, 6);
-            subcatagory = (MetricSubcatagory)rnd;
-            convertedValuesText.Add(SetMetricText(subcatagory));
-            convertedValues.Add(ConvertToMetric(subcatagory, number));
-        }
-    }
-
-    public float ConvertToMetric(MetricSubcatagory metric, float number)
-    {
-        switch (metric)
-        {
-            case MetricSubcatagory.milli:
-                return number * 1000;
-            case MetricSubcatagory.centi:
-                return number * 100;
-            case MetricSubcatagory.deci:
-                return number * 10;
-            case MetricSubcatagory.unit:
-                break;
-            case MetricSubcatagory.deca:
+            if (random == 0)
                 return number / 10;
-            case MetricSubcatagory.hecta:
+            else if (random == 1)
+                return number;
+            else if (random == 2)
                 return number / 100;
-            case MetricSubcatagory.kilo:
-                return number / 1000;
+            return number;
         }
-        return number;
+        else if (convertionOptions == "kilo")
+        {
+            if (random == 0)
+                return number * 10f;
+            else if (random == 1)
+                return number;
+            else if (random == 2)
+                return number * 100f;
+            return number;
+        }
+        else 
+        {
+            if (random == 0)
+                return number / 0.1f;
+            else if (random == 1)
+                return number;
+            else if (random == 2)
+                return number / 10;
+            return number;
+        }
     }
 
     public string SetMetricText(MetricSubcatagory metric)
@@ -143,20 +201,37 @@ public class MetricManager : MonoBehaviour
         switch (metric)
         {
             case MetricSubcatagory.milli:
-                return "Milli";
+                return "M";
             case MetricSubcatagory.centi:
-                return "Centi";
+                return "C";
             case MetricSubcatagory.deci:
-                return "Deci";
+                return "D";
             case MetricSubcatagory.unit:
                 break;
             case MetricSubcatagory.deca:
-                return "Deca";
+                return "Da";
             case MetricSubcatagory.hecta:
-                return "Hecto";
+                return "H";
             case MetricSubcatagory.kilo:
-                return "Kilo";
+                return "K";
         }
         return "";
+    }
+
+    public string GenerateMetric()
+    {
+        int rnd = Random.Range(0, 4);
+        MetricSystem metric = (MetricSystem)rnd;
+        switch (metric)
+        {
+            case MetricSystem.meter:
+                return "M";
+            case MetricSystem.gram:
+                return "G";
+            case MetricSystem.liter:
+                return "L";
+            default:
+                return "M";
+        }
     }
 }
