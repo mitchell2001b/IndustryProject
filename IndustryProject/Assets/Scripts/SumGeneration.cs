@@ -12,22 +12,25 @@ public class SumGeneration : MonoBehaviour
     public List<float> metricValues = new();
     public float answer { get; private set; }
 
+
+
+    //Generates values for the buttons and sum
+    public List<float> GenerateValues(int amountOfValues, int from, int to)
+    {
+        for (int i = 0; i < amountOfValues; i++)
+        {
+            values.Add(Random.Range(from, to + 1));
+        }
+        return values;
+    }
+
+    #region Calculator
     public enum MathOperators
     {
         plus,
         min,
         times,
         divided
-    }
-
-    //Checks how many answers can be given based on the amount of players
-    public int CheckAnswerAmount(int playerAmount)
-    {
-        if (playerAmount > 2)
-        {
-            return Random.Range(2, playerAmount + 1);
-        }
-        return 2;
     }
 
     public void MakeSum(int buttonAmount)
@@ -81,6 +84,18 @@ public class SumGeneration : MonoBehaviour
         }
         return 0;
     }
+    #endregion
+
+    #region Metric
+    //Checks how many answers can be given based on the amount of players
+    public int CheckAnswerAmount(int playerAmount)
+    {
+        if (playerAmount > 2)
+        {
+            return Random.Range(2, playerAmount + 1);
+        }
+        return 2;
+    }
 
     //generates a sum based on non converted numbers
     public float MakeMetricSum(int playerAmount, List<float> generatedValues)
@@ -109,4 +124,6 @@ public class SumGeneration : MonoBehaviour
         }
         return answer;
     }
+    #endregion
+
 }
