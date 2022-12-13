@@ -9,6 +9,7 @@ public class SetButtonValue : MonoBehaviour
 {
     public string buttonTextNumber;
     public float value;
+    public bool isPressed;
 
     public void SetNumberButtonValue(float number)
     {
@@ -28,5 +29,22 @@ public class SetButtonValue : MonoBehaviour
     {
         gameObject.name = value;
         GetComponentInChildren<TMP_Text>().text = value;
+    }
+
+    public void CheckIfButtonIsPressed()
+    {
+        if (!isPressed)
+        {
+            isPressed = true;
+        }
+        else
+        {
+            isPressed = false;
+        }
+    }
+
+    public void SetPressedFalse()
+    {
+        isPressed = false;
     }
 }

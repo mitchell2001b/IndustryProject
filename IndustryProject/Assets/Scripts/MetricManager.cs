@@ -16,8 +16,11 @@ public class MetricManager : MonoBehaviour
     public float sum;
     public int playerAmount = 2;
     public TextMeshProUGUI sumText;
+    public TextMeshProUGUI timer;
+    public TextMeshProUGUI ScoreText;
     private string metricText;
     private string convertionOptions;
+    private int goodAnswers = 0;
     enum MetricSystem
     {
         meter,
@@ -35,7 +38,39 @@ public class MetricManager : MonoBehaviour
         hecta,
         kilo
     }
-    
+
+    void Start()
+    {
+        Go();
+    }
+
+    private void Update()
+    {
+        CheckGivenAnswers();
+    }
+
+    public void Go()
+    {
+        values.Clear();
+        convertedValues.Clear();
+        convertedValuesText.Clear();
+        metrics.Clear();
+        AllButtonsFalse();
+        metricText = GenerateMetric();
+        GetUasableMetrics();
+        GenerateValues();
+        ConvertAnswerButtonValues();
+        sum = GetComponent<SumGeneration>().MakeMetricSum(playerAmount, values);
+        ConvertSum();
+        timer.text = 15.ToString();
+        sumText.text = sum.ToString() + " " + convertedValue + metricText;
+        ScoreText.text = "0/3 goed";
+        GetComponent<UIManager>().SetButtonValues(numberButtons, convertedValues, convertedValuesText, metricText);
+        StopAllCoroutines();
+        StartCoroutine(GetComponent<UIManager>().UpdateTimer(15, 1));
+    }
+
+    //Generates values for the buttons and sum
     public void GenerateValues()
     {
         for (int i = 0; i < 6; i++)
@@ -43,15 +78,8 @@ public class MetricManager : MonoBehaviour
             values.Add(Random.Range(1, 101));
         }
     }
-    public int CheckAnswerAmount()
-    {
-        if (playerAmount > 2)
-        {
-            return Random.Range(2, 5);
-        }
-        return 2;
-    }
 
+    //Chooses 3 metrics to convert numbers to
     public void GetUasableMetrics()
     {
         int rnd = Random.Range(0, 7);
@@ -75,34 +103,9 @@ public class MetricManager : MonoBehaviour
             metrics.Add((MetricSubcatagory)rnd);
             metrics.Add((MetricSubcatagory)rnd + 1);
         }
-    }   
-
-    public void MakeMetricSum()
-    {
-        int answerAmount = CheckAnswerAmount();
-        float answer = 0;
-        List<int> doubles = new();
-        for (int i = 0; i < answerAmount; i++)
-        {
-            int x = Random.Range(0, values.Count);
-            if (!doubles.Contains(x))
-            {
-                doubles.Add(x);
-            }
-            else
-            {
-                while (doubles.Contains(x))
-                {
-                    x = Random.Range(0, values.Count);
-                }
-                doubles.Add(x);
-            }
-            answer += values[x];
-            Debug.Log(answer);
-        }
-        sum = answer;
     }
-
+    
+    //Adds the right metric text and converted numbers to their own list
     public void ConvertAnswerButtonValues()
     {
         int rnd;
@@ -117,51 +120,26 @@ public class MetricManager : MonoBehaviour
 
     public void ConvertSum()
     {
-        //int rnd = Random.Range(0, 3);
         MetricSubcatagory subcatagory = metrics[1];
-        sum = ConvertToMetric(1, sum);
         convertedValue = SetMetricText(subcatagory);
     }
 
 
-
-
-    void Start()
-    {
-        Go();
-    }
-
-    public void Go()
-    {
-        values.Clear();
-        convertedValues.Clear();
-        convertedValuesText.Clear();
-        metrics.Clear();
-        metricText = GenerateMetric();
-        GetUasableMetrics();
-        GenerateValues();
-        ConvertAnswerButtonValues();
-        MakeMetricSum();
-        ConvertSum();
-        Debug.Log(convertedValuesText.Count);
-        SetButtonValues();
-        sumText.text = sum.ToString() + " " + convertedValue + metricText;
-    }
-
-
+    //Puts the correct metric and number on the button
     public void SetButtonValues()
     {
         int counter = 0;
         foreach (var button in numberButtons)
         {
             button.GetComponent<SetButtonValue>().SetNumberButtonValue(
-                convertedValues[counter], 
+                convertedValues[counter],
                 convertedValuesText[counter],
                 metricText);
             counter++;
         }
     }
 
+    //Converts the generated numbers to metrics
     public float ConvertToMetric(int random, float number)
     {
         if (convertionOptions == "milli")
@@ -184,7 +162,7 @@ public class MetricManager : MonoBehaviour
                 return number * 100f;
             return number;
         }
-        else 
+        else
         {
             if (random == 0)
                 return number / 0.1f;
@@ -234,4 +212,49 @@ public class MetricManager : MonoBehaviour
                 return "M";
         }
     }
+
+    public void CheckGivenAnswers()
+    {
+        if (timer.text == "0")
+        {
+            GetGivenAnswers();
+        }
+
+    }
+
+    private void GetGivenAnswers()
+    {
+        int counter = 0;
+        float answer = 0;
+        foreach (var button in numberButtons)
+        {
+            if (button.GetComponent<SetButtonValue>().isPressed)
+            {
+                Debug.Log(button.GetComponent<SetButtonValue>().isPressed);
+                answer += values[counter];
+            }
+            counter++;
+            Debug.Log(answer);
+        }
+        if (answer == sum)
+        {
+            Debug.Log("YAAAAAAAAAAAAAAAY");
+            goodAnswers++;
+            Go();
+        }
+        else
+        {
+            Debug.Log("BOOOOOOOOOOOOOOOO");
+            Go();
+        }
+    }
+
+    public void AllButtonsFalse()
+    {
+        foreach (var buttom in numberButtons)
+        {
+            buttom.GetComponent<SetButtonValue>().SetPressedFalse();
+        }
+    }
+
 }

@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static MinigameManager;
 using Random = UnityEngine.Random;
 
 public class SumGeneration : MonoBehaviour
 {
-    public readonly List<int> values = new();
+    public List<float> values = new();
+    public List<float> metricValues = new();
     public float answer { get; private set; }
 
     public enum MathOperators
@@ -16,6 +18,16 @@ public class SumGeneration : MonoBehaviour
         min,
         times,
         divided
+    }
+
+    //Checks how many answers can be given based on the amount of players
+    public int CheckAnswerAmount(int playerAmount)
+    {
+        if (playerAmount > 2)
+        {
+            return Random.Range(2, playerAmount + 1);
+        }
+        return 2;
     }
 
     public void MakeSum(int buttonAmount)
@@ -68,5 +80,33 @@ public class SumGeneration : MonoBehaviour
                 break;
         }
         return 0;
+    }
+
+    //generates a sum based on non converted numbers
+    public float MakeMetricSum(int playerAmount, List<float> generatedValues)
+    {
+        metricValues = generatedValues;
+        int answerAmount = CheckAnswerAmount(playerAmount);
+        float answer = 0;
+        List<int> doubles = new();
+        for (int i = 0; i < answerAmount; i++)
+        {
+            int x = Random.Range(0, metricValues.Count);
+            if (!doubles.Contains(x))
+            {
+                doubles.Add(x);
+            }
+            else
+            {
+                while (doubles.Contains(x))
+                {
+                    x = Random.Range(0, metricValues.Count);
+                }
+                doubles.Add(x);
+            }
+            answer += metricValues[x];
+            Debug.Log(answer);
+        }
+        return answer;
     }
 }
