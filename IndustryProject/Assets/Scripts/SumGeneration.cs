@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class SumGeneration : MonoBehaviour
 {
     public List<float> values = new();
-    public List<float> metricValues = new();
     public float answer { get; private set; }
 
 
@@ -87,6 +86,8 @@ public class SumGeneration : MonoBehaviour
     #endregion
 
     #region Metric
+    public List<float> metricValues = new();
+
     //Checks how many answers can be given based on the amount of players
     public int CheckAnswerAmount(int playerAmount)
     {
@@ -97,7 +98,7 @@ public class SumGeneration : MonoBehaviour
         return 2;
     }
 
-    //generates a sum based on non converted numbers
+    //generates a sum based on non converted numbers and the amount of players
     public float MakeMetricSum(int playerAmount, List<float> generatedValues)
     {
         metricValues = generatedValues;
@@ -107,6 +108,7 @@ public class SumGeneration : MonoBehaviour
         for (int i = 0; i < answerAmount; i++)
         {
             int x = Random.Range(0, metricValues.Count);
+            //This if else makes sure the answer can't be made with 2 numbbers from the same button
             if (!doubles.Contains(x))
             {
                 doubles.Add(x);

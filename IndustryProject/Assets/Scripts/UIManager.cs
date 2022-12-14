@@ -73,11 +73,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetMetricStartText(float sum, string convertedValue, string metricText)
+    public void SetMetricStartText(float sum, string convertedValue, string metricText, int score)
     {
         timerText.text = 15.ToString();
         sumText.text = sum.ToString() + " " + convertedValue + metricText;
-        scoreText.text = "0/3 goed";
+        scoreText.text = $"{score}/3 goed";
     }
 
     //Generates the metric unit used in the problem. This is only for visuals and is not looked at while making a problem.

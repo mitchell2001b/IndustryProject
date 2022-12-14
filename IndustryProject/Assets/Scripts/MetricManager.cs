@@ -18,7 +18,7 @@ public class MetricManager : MonoBehaviour
     public int playerAmount = 2;
     private string metricText;
     private string convertionOptions;
-    private int goodAnswers = 0;
+    private int score = 0;
 
     public enum MetricSubcatagory
     {
@@ -33,7 +33,7 @@ public class MetricManager : MonoBehaviour
 
     void Start()
     {
-        Go();
+        GameSetup();
     }
 
     private void Update()
@@ -41,7 +41,7 @@ public class MetricManager : MonoBehaviour
         CheckGivenAnswers();
     }
 
-    public void Go()
+    public void GameSetup()
     {
         ClearAllLists();
         SetAllButtonsClickedFalse();
@@ -51,7 +51,7 @@ public class MetricManager : MonoBehaviour
         AddConvertionsToList();
         sum = GetComponent<SumGeneration>().MakeMetricSum(playerAmount, values);
         AddMetricToSum();
-        GetComponent<UIManager>().SetMetricStartText(sum, convertedValue, metricText);
+        GetComponent<UIManager>().SetMetricStartText(sum, convertedValue, metricText, score);
         GetComponent<UIManager>().SetButtonValues(numberButtons, convertedValues, convertedValuesText, metricText);
         StopAllCoroutines();
         StartCoroutine(GetComponent<UIManager>().UpdateTimer(15, 1));
@@ -99,8 +99,7 @@ public class MetricManager : MonoBehaviour
     //This adds the correct metric text to the sum
     public void AddMetricToSum()
     {
-        MetricSubcatagory subcatagory = metrics[1];
-        convertedValue = GetSubMetricText(subcatagory);
+        convertedValue = GetSubMetricText(metrics[1]);
     }
 
     public string GetSubMetricText(MetricSubcatagory metric)
@@ -155,15 +154,27 @@ public class MetricManager : MonoBehaviour
     {
         if (answer == sum)
         {
-            Debug.Log("YAAAAAAAAAAAAAAAY");
-            goodAnswers++;
-            Go();
+            GoodAnswer();
         }
         else
         {
-            Debug.Log("BOOOOOOOOOOOOOOOO");
-            Go();
+            WrongAnswer();
         }
+    }
+
+    public void GoodAnswer()
+    {
+        //show answer was right
+        Debug.Log("YAAAAAAAAAAAAAAAY");
+        score++;
+        GameSetup();
+    }
+
+    public void WrongAnswer()
+    {
+        //show answer was wrong
+        Debug.Log("BOOOOOOOOOOOOOOOO");
+        GameSetup();
     }
 
     public void SetAllButtonsClickedFalse()
