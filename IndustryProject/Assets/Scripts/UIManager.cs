@@ -5,7 +5,6 @@ using System.Data.SqlTypes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static MinigameManager;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class UIManager : MonoBehaviour

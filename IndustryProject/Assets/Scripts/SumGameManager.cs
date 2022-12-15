@@ -21,8 +21,8 @@ public class SumGameManager : MonoBehaviour
     float sum;
     string sumString;
     string mathOperator = "";
-    bool aTurn;
-    bool bTurn;
+    bool aTurn = true;
+    bool bTurn = false;
     bool operatorVisible;
    
     /// the times table you want to generate from. if this is 1 the smallest times table will be 1.
@@ -40,7 +40,7 @@ public class SumGameManager : MonoBehaviour
 
     void Start()
     { 
-        StartGameWithoutOperator();
+        GenerateQuiestiontype();
     }
 
     public void SetNumbers()
@@ -49,13 +49,13 @@ public class SumGameManager : MonoBehaviour
         if (aTurn)
         {
             a = float.Parse(clickedButton.name);
-            if (!operatorVisible)
+            if (operatorVisible)
             {
                 aTurn = false;
                 bTurn = true;
             }
         }
-        else if (bTurn && !operatorVisible)
+        else if (bTurn && operatorVisible)
         {
             b = float.Parse(clickedButton.name);
             aTurn = true;
@@ -65,10 +65,25 @@ public class SumGameManager : MonoBehaviour
         UpdateSum();
     }
 
-    public void SetOperators()
+    public void SetOperatorsWithButton()
     {
         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
         mathOperator = clickedButton.name;
+        GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
+        UpdateSum();
+    }
+
+    public void SetOperatorsAutomatic(int rnd)
+    {
+        if (rnd == 0)
+            mathOperator = "+";
+        else if (rnd == 1)
+            mathOperator = "-";
+        else if (rnd == 2)
+            mathOperator = "*";
+        else if (rnd == 3)
+            mathOperator = "/";
+
         GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
         UpdateSum();
     }
@@ -88,6 +103,10 @@ public class SumGameManager : MonoBehaviour
             string op = GetComponent<UIManager>().SetOperator(counter);
             button.GetComponent<SetButtonValue>().SetOperatorButtonValue(op);
             counter++;
+            if (operatorVisible)
+                button.SetActive(false);
+            else
+                button.SetActive(true);
         }
     }
 
@@ -114,27 +133,45 @@ public class SumGameManager : MonoBehaviour
 
     public void GenerateQuiestiontype()
     {
-        if (operatorVisible)
-        {
+        int rnd = Random.Range(0, 2);
 
-        }
+        if (rnd == 0)
+            operatorVisible = true;
         else
-        {
+            operatorVisible = false;
+       
+
+        if (operatorVisible)
+            StartGameWithOperator();
+        else
             StartGameWithoutOperator();
-        }
+        
     }
 
     public void StartGameWithoutOperator()
     {
-        aTurn = true;
-        bTurn = false;
         a = 0; 
         mathOperator = "";
-        //GetComponent<SumGeneration>().values.Clear();
+        GetComponent<SumGeneration>().values.Clear();
         SetButtonValues();
-        b = GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
+        b = GetComponent<SumGeneration>().MakeSum(numberButtons.Length, Random.Range(0, 4));
         questionAnswer = GetComponent<SumGeneration>().answer;
-        sumString = b + " = " + questionAnswer;
+        sumString = "? ? " + b + " = " + questionAnswer;
+        sumText.text = sumString;
+    }
+
+    public void StartGameWithOperator()
+    {
+        int rnd = Random.Range(0, 4);
+        a = 0;
+        b = 0;
+        mathOperator = "";
+        GetComponent<SumGeneration>().values.Clear();
+        SetButtonValues();
+        GetComponent<SumGeneration>().MakeSum(numberButtons.Length, rnd);
+        SetOperatorsAutomatic(rnd);
+        questionAnswer = GetComponent<SumGeneration>().answer;
+        sumString = "? " + mathOperator +" ? " + " = " + questionAnswer;
         sumText.text = sumString;
     }
 }

@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static MinigameManager;
 using Random = UnityEngine.Random;
 
 public class SumGeneration : MonoBehaviour
 {
     public readonly List<int> values = new();
     public float answer { get; private set; }
+    public MathOperators mop;
 
     public enum MathOperators
     {
@@ -18,7 +18,7 @@ public class SumGeneration : MonoBehaviour
         divided
     }
 
-    public float MakeSum(int buttonAmount)
+    public float MakeSum(int buttonAmount, int random)
     {
         int rnd;
         int previousNumber = 0;
@@ -46,14 +46,14 @@ public class SumGeneration : MonoBehaviour
                 }
             }
         }
-        answer = (float)Math.Round(MakeAnswer(number1, number2), 2);
+        answer = (float)Math.Round(MakeAnswer(number1, number2, random), 2);
         Debug.Log(number1 + " " + number2);
         return number2;
     }
 
-    public float MakeAnswer(float left, float right)
+    public float MakeAnswer(float left, float right, int rnd)
     {
-        MathOperators mop = (MathOperators)Random.Range(0, 4);
+        mop = (MathOperators)rnd;
         Debug.Log(mop);
         switch (mop)
         {
