@@ -18,7 +18,7 @@ public class SumGeneration : MonoBehaviour
         divided
     }
 
-    public void MakeSum(int buttonAmount)
+    public float MakeSum(int buttonAmount)
     {
         int rnd;
         int previousNumber = 0;
@@ -48,6 +48,7 @@ public class SumGeneration : MonoBehaviour
         }
         answer = (float)Math.Round(MakeAnswer(number1, number2), 2);
         Debug.Log(number1 + " " + number2);
+        return number2;
     }
 
     public float MakeAnswer(float left, float right)

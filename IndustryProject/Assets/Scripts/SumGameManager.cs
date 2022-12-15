@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class MinigameManager : MonoBehaviour
+public class SumGameManager : MonoBehaviour
 {
     [SerializeField] GameObject[] numberButtons;
     [SerializeField] GameObject[] operatorButtons;
@@ -23,6 +23,7 @@ public class MinigameManager : MonoBehaviour
     string mathOperator = "";
     bool aTurn;
     bool bTurn;
+    bool operatorVisible;
    
     /// the times table you want to generate from. if this is 1 the smallest times table will be 1.
     public int timesTableStart = 1;
@@ -39,7 +40,7 @@ public class MinigameManager : MonoBehaviour
 
     void Start()
     { 
-        StartGame();
+        StartGameWithoutOperator();
     }
 
     public void SetNumbers()
@@ -48,10 +49,13 @@ public class MinigameManager : MonoBehaviour
         if (aTurn)
         {
             a = float.Parse(clickedButton.name);
-            aTurn = false;
-            bTurn = true;
+            if (!operatorVisible)
+            {
+                aTurn = false;
+                bTurn = true;
+            }
         }
-        else if (bTurn)
+        else if (bTurn && !operatorVisible)
         {
             b = float.Parse(clickedButton.name);
             aTurn = true;
@@ -104,22 +108,33 @@ public class MinigameManager : MonoBehaviour
         if ((float)Math.Round(sum,2) == questionAnswer)
         { 
             Debug.Log("Nailed it");
-            StartGame();
+            StartGameWithoutOperator();
         }
     }
 
-    public void StartGame()
+    public void GenerateQuiestiontype()
+    {
+        if (operatorVisible)
+        {
+
+        }
+        else
+        {
+            StartGameWithoutOperator();
+        }
+    }
+
+    public void StartGameWithoutOperator()
     {
         aTurn = true;
         bTurn = false;
-        a = 0;
-        b = 0;
+        a = 0; 
         mathOperator = "";
-        GetComponent<SumGeneration>().values.Clear();
+        //GetComponent<SumGeneration>().values.Clear();
         SetButtonValues();
-        GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
+        b = GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
         questionAnswer = GetComponent<SumGeneration>().answer;
-        sumString = " = " + questionAnswer;
+        sumString = b + " = " + questionAnswer;
         sumText.text = sumString;
     }
 }
