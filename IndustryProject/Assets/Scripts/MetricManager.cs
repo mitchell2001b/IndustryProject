@@ -192,5 +192,4 @@ public class MetricManager : MonoBehaviour
         convertedValuesText.Clear();
         metrics.Clear();
     }
-
 }

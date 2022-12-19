@@ -6,9 +6,6 @@ using static MetricManager;
 
 public class MetricConverter : MonoBehaviour
 {
-   
-
-
     public float ConvertToMetric(int random, float number, string convertionOptions)
     {
         if (convertionOptions == "milli")
