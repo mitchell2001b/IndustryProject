@@ -103,6 +103,7 @@ public class SumGameManager : MonoBehaviour
             string op = GetComponent<UIManager>().SetOperator(counter);
             button.GetComponent<SetButtonValue>().SetOperatorButtonValue(op);
             counter++;
+
             if (operatorVisible)
                 button.SetActive(false);
             else
@@ -127,7 +128,7 @@ public class SumGameManager : MonoBehaviour
         if ((float)Math.Round(sum,2) == questionAnswer)
         { 
             Debug.Log("Nailed it");
-            StartGameWithoutOperator();
+            GenerateQuiestiontype();
         }
     }
 
@@ -142,13 +143,13 @@ public class SumGameManager : MonoBehaviour
        
 
         if (operatorVisible)
-            StartGameWithOperator();
+            QuestionWithOperator();
         else
-            StartGameWithoutOperator();
+            QuestionWithoutOperator();
         
     }
 
-    public void StartGameWithoutOperator()
+    public void QuestionWithoutOperator()
     {
         a = 0; 
         mathOperator = "";
@@ -160,7 +161,7 @@ public class SumGameManager : MonoBehaviour
         sumText.text = sumString;
     }
 
-    public void StartGameWithOperator()
+    public void QuestionWithOperator()
     {
         int rnd = Random.Range(0, 4);
         a = 0;
