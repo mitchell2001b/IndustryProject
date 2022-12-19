@@ -60,4 +60,9 @@ public class Timer : MonoBehaviour
         timeLeft = time;
         timerOn = true;
     }
+
+    public void DecreaseTimer(int value)
+    {
+        timeLeft -= value;
+    }
 }
