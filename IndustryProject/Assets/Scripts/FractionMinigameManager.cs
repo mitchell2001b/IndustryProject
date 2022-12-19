@@ -22,7 +22,7 @@ public class FractionMinigameManager : MonoBehaviour
 
     [SerializeField] private GameObject timer;
 
-    private int wrongAnswerPenalty = 20;
+    [SerializeField] private int wrongAnswerPenalty = 20;
 
     private void Start()
     {
@@ -63,11 +63,17 @@ public class FractionMinigameManager : MonoBehaviour
     private void IncorrectAnswer()
     {
         timer.GetComponent<Timer>().DecreaseTimer(wrongAnswerPenalty);
+        ResetValues();
     }
 
     private void CorrectAnswer()
     {
         answer = fractionGenerator.Generate();
+        ResetValues();
+    }
+
+    private void ResetValues()
+    {
         topAnswer = 0;
         botAnswer = 0;
     }
