@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class SumGameManager : MonoBehaviour
+public class MinigameManager : MonoBehaviour
 {
     [SerializeField] GameObject[] numberButtons;
     [SerializeField] GameObject[] operatorButtons;
