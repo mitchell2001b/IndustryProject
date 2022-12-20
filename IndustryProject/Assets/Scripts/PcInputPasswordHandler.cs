@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class PcInputPasswordHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI pcInputField;
     private MiniPuzzleFractionScene puzzleHandler;
+    [SerializeField] UnityEvent onComplete;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class PcInputPasswordHandler : MonoBehaviour
         if(puzzleHandler.passWord == pcInputField.text)
         {
             puzzleHandler.TurnOffPasswordScreen();
+            onComplete.Invoke();
         }
     }
 }

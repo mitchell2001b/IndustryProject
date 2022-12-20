@@ -94,6 +94,11 @@ public class MiniPuzzleFractionScene : MonoBehaviour
     {
         fractionPuzzleComplete = true;
     }
+
+    public void SetFractionPuzzleToBeNotCompleted()
+    {
+        fractionPuzzleComplete = false;
+    }
     // Update is called once per frame
     void Update()
     {

@@ -14,6 +14,9 @@ using UnityEngine.Events;
 public class FractionMinigameManager : MonoBehaviour
 {
     [SerializeField] private FractionGenerator fractionGenerator;
+    [SerializeField] int questionCount;
+    [SerializeField] UnityEvent onComplete;
+    private int score;
 
     private float topAnswer = 0;
     private float botAnswer = 0;
@@ -27,6 +30,7 @@ public class FractionMinigameManager : MonoBehaviour
     private void Start()
     {
         answer = fractionGenerator.Generate();
+        GetComponent<UIManager>().SetFractionText(questionCount, score);
     }
 
     public void ReceiveValue(int value, int type)
@@ -68,12 +72,20 @@ public class FractionMinigameManager : MonoBehaviour
 
     private void CorrectAnswer()
     {
+        score++;
+        
         answer = fractionGenerator.Generate();
+        if (score >= questionCount)
+        {
+            onComplete.Invoke();
+        }
         ResetValues();
+        
     }
 
     private void ResetValues()
     {
+        GetComponent<UIManager>().SetFractionText(questionCount, score);
         topAnswer = 0;
         botAnswer = 0;
     }
