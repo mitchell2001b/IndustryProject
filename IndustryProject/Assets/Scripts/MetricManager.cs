@@ -4,9 +4,11 @@ using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MetricManager : MonoBehaviour
 {
+    [SerializeField] KeyTracker keyTracker;
     [SerializeField] GameObject[] numberButtons;
     public List<float> values = new();
     public readonly List<MetricSubcatagory> metrics = new();
@@ -19,6 +21,7 @@ public class MetricManager : MonoBehaviour
     private string metricText;
     private string convertionOptions;
     private int score = 0;
+    [SerializeField] UnityEvent onComplete;
 
     public enum MetricSubcatagory
     {
@@ -167,11 +170,15 @@ public class MetricManager : MonoBehaviour
         //show answer was right
         Debug.Log("YAAAAAAAAAAAAAAAY");
         score++;
+        if(score == 3)
+        {
+            onComplete.Invoke();
+        }
         GameSetup();
     }
 
     public void WrongAnswer()
-    {
+    {     
         //show answer was wrong
         Debug.Log("BOOOOOOOOOOOOOOOO");
         GameSetup();
