@@ -4,6 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class FractionGenerator : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class FractionGenerator : MonoBehaviour
     private float answer;
 
     [SerializeField] private TextMeshProUGUI answerTxt;
+    [SerializeField] private Image fractionPie;
 
     [SerializeField] private List<GameObject> topButtons;
     [SerializeField] private List<GameObject> botButtons;
@@ -98,6 +100,35 @@ public class FractionGenerator : MonoBehaviour
         answer = (float)Math.Round(answer, 2);
 
         answerTxt.text = answer.ToString();
+
+        float piePercent = answer % 1;
+        if (piePercent == 0)
+        {
+            piePercent = 1;
+        }
+        fractionPie.fillAmount = piePercent;
+
+        Vector3 fractionPieLocation = fractionPie.rectTransform.localPosition;
+        switch (answer.ToString().Length)
+        {
+            case 1:
+                fractionPieLocation.x = 211;
+                break;
+            case 2:
+                fractionPieLocation.x = 243;
+                break;
+            case 3:
+                fractionPieLocation.x = 259;
+                break;
+            case 4:
+                fractionPieLocation.x = 303;
+                break;
+            default:
+                fractionPieLocation.x = 345;
+                break;
+        }
+
+        fractionPie.rectTransform.localPosition = fractionPieLocation;
 
         AssignButtons();
 
