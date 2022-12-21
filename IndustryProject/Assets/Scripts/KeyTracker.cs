@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class KeyTracker : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class KeyTracker : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI keyCounterTxt;
 
-    [SerializeField] private GameObject tryOpenDoor;
+    [SerializeField] UnityEvent onComplete;
 
     public void PickupKey()
     {
@@ -30,6 +31,10 @@ public class KeyTracker : MonoBehaviour
 
     public void TryOpenDoor()
     {
-        tryOpenDoor.GetComponent<OpenDoor>().tryOpenDoor?.Invoke(keyCount);
+        if(keyCount == 0)
+        {
+            onComplete.Invoke();
+        }
+       
     }
 }
