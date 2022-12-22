@@ -2502,6 +2502,11 @@ RectTransform:
   m_AnchoredPosition: {x: -167.60458, y: 153.16647}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &247714263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2065509678448098823, guid: 6751c97eeea71fa4abc5bf145721618f, type: 3}
+  m_PrefabInstance: {fileID: 626435684492617947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!21 &254396819
 Material:
   serializedVersion: 8
@@ -10652,6 +10657,7 @@ MonoBehaviour:
   - {fileID: 1302856738}
   - {fileID: 1471748985}
   - {fileID: 748206864}
+  sound: {fileID: 6865405256231710674}
   sumText: {fileID: 241180483}
   questionCount: 2
   timesTableStart: 1
@@ -11242,12 +11248,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 383551625}
     - target: {fileID: 5242014584880475677, guid: 38e22d8d185d8cf4197d944dbaae4752, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 6865405256231710674}
+    - target: {fileID: 5242014584880475677, guid: 38e22d8d185d8cf4197d944dbaae4752, type: 3}
       propertyPath: timer
       value: 
       objectReference: {fileID: 1715959563}
     - target: {fileID: 5242014584880475677, guid: 38e22d8d185d8cf4197d944dbaae4752, type: 3}
       propertyPath: questionCount
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5242014584880475677, guid: 38e22d8d185d8cf4197d944dbaae4752, type: 3}
       propertyPath: onComplete.m_PersistentCalls.m_Calls.Array.size
@@ -12283,6 +12293,45 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1356105030}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onAllKeysRetrieved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 247714263}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 510210721}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1494861257}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -21978,6 +22027,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818383437}
     m_Modifications:
+    - target: {fileID: 5895498942130313865, guid: b6a27e57f01701f438e12d57b761d7a7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 489cda758935fe74984b75190581056e, type: 3}
     - target: {fileID: 5895498942130313867, guid: b6a27e57f01701f438e12d57b761d7a7, type: 3}
       propertyPath: m_Name
       value: keySound
@@ -22150,6 +22203,10 @@ PrefabInstance:
     - target: {fileID: 2065509678448098823, guid: 6751c97eeea71fa4abc5bf145721618f, type: 3}
       propertyPath: m_Name
       value: DoorButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065509678448098823, guid: 6751c97eeea71fa4abc5bf145721618f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2065509678448099066, guid: 6751c97eeea71fa4abc5bf145721618f, type: 3}
       propertyPath: m_Material
@@ -23657,6 +23714,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2586771489609323633, guid: 22954cd2d7051fa479e740b27fd045e8, type: 3}
   m_PrefabInstance: {fileID: 8980423132234906528}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6865405256231710674 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2586771489609323631, guid: 22954cd2d7051fa479e740b27fd045e8, type: 3}
+  m_PrefabInstance: {fileID: 8980423132234906528}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43e9f2421ea7a24ab36690a10d4dc01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8980423132234906528
 PrefabInstance:
   m_ObjectHideFlags: 0

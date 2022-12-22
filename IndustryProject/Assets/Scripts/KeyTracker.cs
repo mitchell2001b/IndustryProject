@@ -12,6 +12,7 @@ public class KeyTracker : MonoBehaviour
     [SerializeField] private TextMeshProUGUI keyCounterTxt;
 
     [SerializeField] UnityEvent onComplete;
+    [SerializeField] UnityEvent onAllKeysRetrieved;
 
     public void PickupKey()
     {
@@ -31,10 +32,18 @@ public class KeyTracker : MonoBehaviour
 
     public void TryOpenDoor()
     {
-        if(keyCount == 0)
+        if(keyCount == 2)
         {
             onComplete.Invoke();
         }
        
+    }
+
+    private void Update()
+    {
+        if(keyCount == 2)
+        {
+            onAllKeysRetrieved.Invoke();
+        }
     }
 }

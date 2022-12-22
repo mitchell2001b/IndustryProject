@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 31
+  controlID: 24187
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 32
+  controlID: 24188
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 33
+  controlID: 24189
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -399,24 +399,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b2b90000
-      m_LastClickedID: 47538
-      m_ExpandedIDs: 96d3ffffced7ffff26fbffffb2ba00003abb00003ebb00007cbb0000c8bb00007cbc0000
+      scrollPos: {x: 0, y: 741.3333}
+      m_SelectedIDs: b045ffff
+      m_LastClickedID: -47696
+      m_ExpandedIDs: 9e54ffff2c65fffffaf9ffff26fbffff3061000048620000526200005e630000a8630000c0630000ee630000566400005a6400008e640000366500009c650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: DoorSound
-        m_OriginalName: DoorSound
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 47606
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -706,9 +706,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.3983738, y: 0.85130715, z: -0.21607707}
+    m_Target: {x: -0.6134845, y: 0.9769118, z: -0.009643178}
     speed: 2
-    m_Value: {x: 2.3983738, y: 0.85130715, z: -0.21607707}
+    m_Value: {x: -0.6134845, y: 0.9769118, z: -0.009643178}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -759,9 +759,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 10
+    m_Target: 3.8820307
     speed: 2
-    m_Value: 10
+    m_Value: 3.8820307
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -827,7 +827,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/sound stuff/Sounds
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
@@ -840,9 +840,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8c690000
-    m_LastClickedID: 27020
-    m_ExpandedIDs: 000000008c690000be69000000ca9a3bffffff7f
+    m_SelectedIDs: 0e880000
+    m_LastClickedID: 34830
+    m_ExpandedIDs: 000000008e690000b269000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -870,7 +870,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008c690000
+    m_ExpandedIDs: 000000008e69000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -898,7 +898,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c623000000000000
+    m_ExpandedInstanceIDs: c62300000000000090690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -984,8 +984,8 @@ MonoBehaviour:
     m_SaveData: []
   m_MixersTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8e690000
-    m_LastClickedID: 27022
+    m_SelectedIDs: 
+    m_LastClickedID: 27024
     m_ExpandedIDs: 12eb343c
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1101,7 +1101,7 @@ MonoBehaviour:
       oldMaxSizes: 
       oldSplitSize: 0
     m_HorizontalSplitter:
-      ID: 74
+      ID: 8010
       splitterInitialOffset: 0
       currentActiveSplitter: -1
       realSizes:
@@ -1165,7 +1165,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 1366
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

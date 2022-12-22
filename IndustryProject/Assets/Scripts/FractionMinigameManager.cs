@@ -26,6 +26,7 @@ public class FractionMinigameManager : MonoBehaviour
     [SerializeField] private GameObject timer;
 
     [SerializeField] private int wrongAnswerPenalty = 20;
+    [SerializeField] PlaySound sound;
 
     private void Start()
     {
@@ -73,7 +74,7 @@ public class FractionMinigameManager : MonoBehaviour
     private void CorrectAnswer()
     {
         score++;
-        
+        sound.playButton();
         answer = fractionGenerator.Generate();
         if (score >= questionCount)
         {

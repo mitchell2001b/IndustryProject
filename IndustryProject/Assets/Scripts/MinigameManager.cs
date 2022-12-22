@@ -16,6 +16,7 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] MinigameTransitionHandler minigameTransitionHandler;
     [SerializeField] GameObject[] numberButtons;
     [SerializeField] GameObject[] operatorButtons;
+    [SerializeField] PlaySound sound;
     public TextMeshProUGUI sumText;
     float a;
     float b;
@@ -109,6 +110,7 @@ public class MinigameManager : MonoBehaviour
     {
         if ((float)Math.Round(sum,2) == questionAnswer)
         {
+            sound.playButton();
             correctQuestionCount++;
             if(correctQuestionCount >= questionCount)
             {
