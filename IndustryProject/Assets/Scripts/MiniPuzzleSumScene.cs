@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MiniPuzzleSumScene : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class MiniPuzzleSumScene : MonoBehaviour
 
     private bool ingredientCheck = false;
 
-    [SerializeField] GameObject emptyGlass;
+    [SerializeField] UnityEvent onComplete;
+
+    [SerializeField] int ingredientAmount;
+
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +25,13 @@ public class MiniPuzzleSumScene : MonoBehaviour
         ingredientCount++;
         if(CheckIfIngredientTotal())
         {
-            emptyGlass.SetActive(true);
+            onComplete.Invoke();
         }
     }
 
     private bool CheckIfIngredientTotal()
     {
-        if(ingredientCount >= 2)
+        if(ingredientCount >= ingredientAmount)
         {
             ingredientCheck = true;
         }
