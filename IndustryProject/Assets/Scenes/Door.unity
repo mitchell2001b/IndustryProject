@@ -367,7 +367,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7c87bee0b6a4ac84b924ddf82d014d9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7067,6 +7067,7 @@ GameObject:
   - component: {fileID: 635040240}
   - component: {fileID: 635040239}
   - component: {fileID: 635040238}
+  - component: {fileID: 635040241}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7140,6 +7141,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &635040241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635040237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f39de0ad427b24fbc325e8c1dbd0c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &655510292
 GameObject:
   m_ObjectHideFlags: 0
@@ -7624,6 +7637,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699595124}
   m_CullTransparentMesh: 1
+--- !u!1 &700106988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 700106990}
+  - component: {fileID: 700106989}
+  m_Layer: 0
+  m_Name: TouchableObjectsHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &700106989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700106988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34c541b21f38f8488f11c4380335304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchAbleObjects:
+  - {fileID: 2857349830009101509}
+  - {fileID: 1296821063}
+  - {fileID: 1662530548}
+  touchControlsOn: 1
+--- !u!4 &700106990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700106988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7736886, y: 0.81349045, z: 0.006416379}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &703584292
 GameObject:
   m_ObjectHideFlags: 0
@@ -13267,6 +13329,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  spriteDrop: {fileID: 1662530548}
 --- !u!114 &1166847113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14892,7 +14955,7 @@ GameObject:
   - component: {fileID: 1296821065}
   m_Layer: 5
   m_Name: draggablePotion
-  m_TagString: Untagged
+  m_TagString: draggable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14948,6 +15011,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   dropzoneObject: {fileID: 1667360099}
   disableDropzoneOnDragEnd: 1
+  touchControlsOn: 1
 --- !u!114 &1296821067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16428,6 +16492,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  spriteDrop: {fileID: 2857349830009101509}
 --- !u!114 &1504038098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18196,7 +18261,7 @@ GameObject:
   - component: {fileID: 1662530550}
   m_Layer: 5
   m_Name: draggablePotion (3)
-  m_TagString: Untagged
+  m_TagString: draggable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18252,6 +18317,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   dropzoneObject: {fileID: 1166847111}
   disableDropzoneOnDragEnd: 1
+  touchControlsOn: 1
 --- !u!114 &1662530552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18348,6 +18414,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  spriteDrop: {fileID: 1296821063}
 --- !u!114 &1667360101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24035,6 +24102,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   dropzoneObject: {fileID: 1504038096}
   disableDropzoneOnDragEnd: 0
+  touchControlsOn: 1
 --- !u!224 &2857349830739599568 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9108091718155250221, guid: 2622accb58dd7ac42a1aa730c17109d9, type: 3}
@@ -25228,6 +25296,10 @@ PrefabInstance:
     - target: {fileID: 8246096693813799123, guid: 015808617240fce45809dd58a405a7f3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246096693813799123, guid: 015808617240fce45809dd58a405a7f3, type: 3}
+      propertyPath: m_TagString
+      value: draggable
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8246096693813799121, guid: 015808617240fce45809dd58a405a7f3, type: 3}

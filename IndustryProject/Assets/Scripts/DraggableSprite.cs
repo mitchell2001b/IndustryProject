@@ -10,36 +10,63 @@ public class DraggableSprite : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public Vector3 startPosition;
     [SerializeField] GameObject dropzoneObject;
     [SerializeField] bool disableDropzoneOnDragEnd = true;
+    public bool touchControlsOn;
+    public bool dragLocked { get; private set; }
+
     public void OnBeginDrag(PointerEventData eventData)
-    {
-        Debug.Log("begin");
-        image = GetComponent<Image>();
-        image.raycastTarget = false;
+    {    
+        if(!dragLocked)
+        {
+            image.raycastTarget = false;
+            transform.position = startPosition;
+            dropzoneObject.SetActive(true);
+        }
+        
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("drag");
-        transform.position = Input.mousePosition;
-        dropzoneObject.SetActive(true);
+        if (!dragLocked)
+        {
+            if (!touchControlsOn)
+            {
+                Debug.Log("drag");
+                transform.position = Input.mousePosition;
+                dropzoneObject.SetActive(true);
+            }
+        }
+        
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        image.raycastTarget = true;
-        transform.position = startPosition;
-        if(disableDropzoneOnDragEnd)
+        if (!dragLocked)
         {
-            dropzoneObject.SetActive(false);
+            image.raycastTarget = true;
+            transform.position = startPosition;
+
+            if (disableDropzoneOnDragEnd)
+            {
+                dropzoneObject.SetActive(false);
+            }
         }
-       
-    }
+        
+        
+        
+    } 
 
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
         startPosition = transform.position;
+       
+    }
+   
+    public void SetDragLocked()
+    {
+        dragLocked = true;
     }
 
     // Update is called once per frame
