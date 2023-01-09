@@ -13288,6 +13288,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  totalKeyCount: 3
 --- !u!4 &1132847953
 Transform:
   m_ObjectHideFlags: 0

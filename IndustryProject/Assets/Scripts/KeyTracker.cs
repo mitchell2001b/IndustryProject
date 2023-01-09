@@ -13,6 +13,7 @@ public class KeyTracker : MonoBehaviour
 
     [SerializeField] UnityEvent onComplete;
     [SerializeField] UnityEvent onAllKeysRetrieved;
+    [SerializeField] int totalKeyCount;
 
     public void PickupKey()
     {
@@ -32,7 +33,7 @@ public class KeyTracker : MonoBehaviour
 
     public void TryOpenDoor()
     {
-        if(keyCount == 2)
+        if(keyCount == totalKeyCount)
         {
             onComplete.Invoke();
         }
@@ -41,7 +42,7 @@ public class KeyTracker : MonoBehaviour
 
     private void Update()
     {
-        if(keyCount == 2)
+        if(keyCount == totalKeyCount)
         {
             onAllKeysRetrieved.Invoke();
         }
