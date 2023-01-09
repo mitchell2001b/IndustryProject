@@ -31,7 +31,7 @@ public class MetricConverter : MonoBehaviour
         else
         {
             if (random == 0)
-                return number / 0.1f;
+                return number * 10f;
             else if (random == 1)
                 return number;
             else if (random == 2)

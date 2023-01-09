@@ -108,7 +108,7 @@ public class SumGeneration : MonoBehaviour
         for (int i = 0; i < answerAmount; i++)
         {
             int x = Random.Range(0, metricValues.Count);
-            //This if else makes sure the answer can't be made with 2 numbbers from the same button
+            //This if else makes sure the answer can't be made with a numbers from a button that is already used
             if (!doubles.Contains(x))
             {
                 doubles.Add(x);
