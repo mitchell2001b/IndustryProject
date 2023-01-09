@@ -33,6 +33,7 @@ public class MiniPuzzleFractionScene : MonoBehaviour
         plugButton.SetActive(false);
         outletOff.SetActive(false);
         outletOn.SetActive(false);
+      
         PrinterButton.SetActive(false);
     }
 
@@ -42,7 +43,7 @@ public class MiniPuzzleFractionScene : MonoBehaviour
         {           
             obj.SetActive(true);
         }
-        if(fractionPuzzleComplete)
+        if(!fractionPuzzleComplete)
         {
             PrinterButton.SetActive(true);
         }
