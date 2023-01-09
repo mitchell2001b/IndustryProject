@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class MetricManager : MonoBehaviour
 {
-    [SerializeField] public int minNumberForGeneration;
-    [SerializeField] public int maxNumberForGeneration;
+    [SerializeField] public int rngMin;
+    [SerializeField] public int rngMax;
     [SerializeField] public int startTime;
 
     [SerializeField] GameObject[] numberButtons;
@@ -49,10 +49,10 @@ public class MetricManager : MonoBehaviour
     public void GameSetup()
     {
         ClearAllLists();
-        SetAllButtonsClickedFalse();
+        SetAllClickedButtonsFalse();
         metricText = GetComponent<UIManager>().GenerateMetricUnit();
         GetUasableMetrics();
-        values = GetComponent<SumGeneration>().GenerateValues(numberButtons.Length, minNumberForGeneration, maxNumberForGeneration);
+        values = GetComponent<SumGeneration>().GenerateValues(numberButtons.Length, rngMin, rngMax);
         AddConvertionsToList();
         sum = GetComponent<SumGeneration>().MakeMetricSum(playerAmount, values);
         AddMetricToSum();
@@ -137,7 +137,6 @@ public class MetricManager : MonoBehaviour
             GetGivenAnswers();
             CompareAnswerSum(answer);
         }
-
     }
 
     private void GetGivenAnswers()
@@ -192,13 +191,13 @@ public class MetricManager : MonoBehaviour
             if (button.GetComponent<SetButtonValue>().isPressed)
             {
                 playerSum += values[counter];
-                GetComponent<UIManager>().UpdatePlayerMetricSum(playerSum);
             }
+            GetComponent<UIManager>().UpdatePlayerMetricSum(playerSum);
             counter++;
         }
     }
 
-    public void SetAllButtonsClickedFalse()
+    public void SetAllClickedButtonsFalse()
     {
         foreach (var buttom in numberButtons)
         {
