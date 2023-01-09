@@ -7,15 +7,17 @@ public class MultipleTouch : MonoBehaviour
 {
    
     private List<TouchLocation> touches = new List<TouchLocation>();
-      
+    [SerializeField] int touchec;
+    [SerializeField] int listcount;
     // Update is called once per frame
     void Update()
     {
         int i = 0;
-        
+        touchec = Input.touchCount;
+        listcount = touches.Count;
         while (i < Input.touchCount)
         {
-            if (Input.touchCount <= 0 || i > touches.Count)
+            if (Input.touchCount <= 0)
             {
                 break;
             }
@@ -38,7 +40,8 @@ public class MultipleTouch : MonoBehaviour
                         if(r.gameObject.tag == "draggable" && r.gameObject.GetComponent<DraggableSprite>() != null)
                         {
                             if(!r.gameObject.GetComponent<DraggableSprite>().dragLocked)
-                            {                               
+                            {
+                                Debug.Log("add");
                                 touches.Add(new TouchLocation(touch.fingerId, r.gameObject));
                                 r.gameObject.GetComponent<DraggableSprite>().OnBeginDrag(pointerEventData);
                                 break;
@@ -67,6 +70,7 @@ public class MultipleTouch : MonoBehaviour
                     return;
                 }
                 Vector3 pos = touch.position;
+                //Debug.Log("pos" + pos);
                 
                 touches.Find(x => x.touchId == touch.fingerId).objectToDrag.transform.position = pos;
                               
