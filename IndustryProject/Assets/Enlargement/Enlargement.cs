@@ -7,34 +7,31 @@ public class Enlargement : MonoBehaviour
     private Vector3 bigScale, mediumScale, smallScale;
     private bool isBig;
     private bool isMedium;
+    private bool isSmall;
     
     void Start()
     {
         bigScale = new Vector3(0.59f, 0.59f, 0.59f);
         mediumScale = new Vector3(0.30f, 0.30f, 0.30f);
         smallScale = new Vector3(0.15f, 0.15f, 0.15f);
-        isBig = true;
         isMedium = false;
+        isSmall = true;
+        transform.localScale = smallScale;
     }
 
     private void OnMouseDown()
     {
-        if(isBig){
+        if(isSmall){
             transform.localScale = mediumScale;
 
-            isBig = !isBig;
+            isSmall = !isSmall;
             isMedium = true;
-        }
-
-        else if(isMedium){
-            transform.localScale = smallScale;
-
-            isMedium = !isMedium;
         }
 
         else{
             transform.localScale = bigScale;
 
+            isMedium = !isMedium;
             isBig = true;
         }
     }
