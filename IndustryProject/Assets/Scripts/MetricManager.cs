@@ -4,6 +4,9 @@ using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class MetricManager : MonoBehaviour
 {
@@ -148,6 +151,7 @@ public class MetricManager : MonoBehaviour
             if (button.GetComponent<SetButtonValue>().isPressed)
             {
                 Debug.Log(button.GetComponent<SetButtonValue>().isPressed);
+                
                 answer += values[counter];
             }
             counter++;

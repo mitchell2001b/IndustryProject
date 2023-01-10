@@ -83,7 +83,7 @@ public class UIManager : MonoBehaviour
         timerText.text = startTime.ToString();
         sumText.text = sum.ToString() + " " + convertedValue + metricText;
         scoreText.text = $"{score}/3 goed";
-        playerMetricSum.text = "0 " + convertedValue + metricText;
+        playerMetricSum.text = " 0 " + convertedValue + metricText;
     }
 
     //Generates the metric unit used in the problem. This is only for visuals and is not looked at while making a problem.
