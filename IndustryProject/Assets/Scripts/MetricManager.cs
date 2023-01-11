@@ -39,10 +39,11 @@ public class MetricManager : MonoBehaviour
         kilo
     }
 
-    void Start()
+    private void Start()
     {
         GameSetup();
     }
+
 
     private void Update()
     {
@@ -63,7 +64,11 @@ public class MetricManager : MonoBehaviour
         GetComponent<UIManager>().SetMetricStartText(sum, convertedValue, metricText, score, startTime);
         GetComponent<UIManager>().SetButtonValues(numberButtons, convertedValues, convertedValuesText, metricText);
         StopAllCoroutines();
-        StartCoroutine(GetComponent<UIManager>().UpdateTimer(startTime, 1));
+        if(this.gameObject.activeSelf)
+        {
+            StartCoroutine(GetComponent<UIManager>().UpdateTimer(startTime, 1));
+        }
+        
     }
 
     //Chooses 3 metrics to convert numbers to
