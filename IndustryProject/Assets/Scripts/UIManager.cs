@@ -19,9 +19,9 @@ public class UIManager : MonoBehaviour
         else if (counter == 1)
             return "-";
         else if (counter == 2)
-            return "*";
+            return "x";
         else if (counter == 3)
-            return "/";
+            return ":";
         return "";
     }
 

@@ -51,15 +51,13 @@ public class MinigameManager : MonoBehaviour
             a = float.Parse(clickedButton.name);
             if (operatorVisible)
             {
-                aTurn = false;
-                bTurn = true;
+                SetTurbBoolToDefault(false, true);
             }
         }
         else if (bTurn && operatorVisible)
         {
             b = float.Parse(clickedButton.name);
-            aTurn = true;
-            bTurn = false;
+            SetTurbBoolToDefault(true, false);
         }
         GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
         UpdateSum();
@@ -80,9 +78,9 @@ public class MinigameManager : MonoBehaviour
         else if (rnd == 1)
             mathOperator = "-";
         else if (rnd == 2)
-            mathOperator = "*";
+            mathOperator = "x";
         else if (rnd == 3)
-            mathOperator = "/";
+            mathOperator = ":";
 
         GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
         UpdateSum();
@@ -117,9 +115,9 @@ public class MinigameManager : MonoBehaviour
             sum = a + b;
         else if (mathOperator == "-")
             sum = a - b;
-        else if (mathOperator == "*")
+        else if (mathOperator == "x")
             sum = a * b;
-        else if (mathOperator == "/")
+        else if (mathOperator == ":")
             sum = a / b;
     }
 
@@ -151,6 +149,7 @@ public class MinigameManager : MonoBehaviour
 
     public void QuestionWithoutOperator()
     {
+        SetTurbBoolToDefault(true, false);
         a = 0; 
         mathOperator = "";
         GetComponent<SumGeneration>().values.Clear();
@@ -163,6 +162,7 @@ public class MinigameManager : MonoBehaviour
 
     public void QuestionWithOperator()
     {
+        SetTurbBoolToDefault(true, false);
         int rnd = Random.Range(0, 4);
         a = 0;
         b = 0;
@@ -174,5 +174,11 @@ public class MinigameManager : MonoBehaviour
         questionAnswer = GetComponent<SumGeneration>().answer;
         sumString = "? " + mathOperator +" ? " + " = " + questionAnswer;
         sumText.text = sumString;
+    }
+
+    private void SetTurbBoolToDefault(bool aTurn, bool bTurn)
+    {
+        this.aTurn = aTurn;
+        this.bTurn = bTurn;
     }
 }
