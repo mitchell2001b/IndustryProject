@@ -15,7 +15,7 @@ public class MetricManager : MonoBehaviour
     [SerializeField] public int rngMin;
     [SerializeField] public int rngMax;
     [SerializeField] public int startTime;
-
+    [SerializeField] PlaySound sound;
     [SerializeField] GameObject[] numberButtons;
     public List<float> values = new();
     public readonly List<MetricSubcatagory> metrics = new();
@@ -179,6 +179,7 @@ public class MetricManager : MonoBehaviour
 
     public void GoodAnswer()
     {
+        sound.playButton();
         //show answer was right
         Debug.Log("YAAAAAAAAAAAAAAAY");
         score++;
