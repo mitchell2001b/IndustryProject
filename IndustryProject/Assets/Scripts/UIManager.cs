@@ -43,6 +43,9 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Metric
+    public TextMeshProUGUI playerMetricSum;
+    private string answerMetricText;
+    private string answerConvertedMetricText;
     enum MetricSystem
     {
         meter,
@@ -73,11 +76,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetMetricStartText(float sum, string convertedValue, string metricText, int score)
+    public void SetMetricStartText(float sum, string convertedValue, string metricText, int score, int startTime)
     {
-        timerText.text = 15.ToString();
+        answerMetricText = metricText;
+        answerConvertedMetricText = convertedValue;
+        timerText.text = startTime.ToString();
         sumText.text = sum.ToString() + " " + convertedValue + metricText;
         scoreText.text = $"{score}/3 goed";
+        playerMetricSum.text = " 0 " + convertedValue + metricText;
     }
 
     //Generates the metric unit used in the problem. This is only for visuals and is not looked at while making a problem.
@@ -92,6 +98,11 @@ public class UIManager : MonoBehaviour
             MetricSystem.liter => "L",
             _ => "M",
         };
+    }
+
+    public void UpdatePlayerMetricSum(float sum)
+    {
+        playerMetricSum.text = sum.ToString() + " " + answerConvertedMetricText + answerMetricText;
     }
     #endregion
 

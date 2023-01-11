@@ -9,19 +9,24 @@ using UnityEngine.Events;
 public class MetricManager : MonoBehaviour
 {
     [SerializeField] KeyTracker keyTracker;
+    [SerializeField] int questionCount;
+    private int score = 0;
+    [SerializeField] UnityEvent onComplete;
+    [SerializeField] public int rngMin;
+    [SerializeField] public int rngMax;
+    [SerializeField] public int startTime;
+
     [SerializeField] GameObject[] numberButtons;
     public List<float> values = new();
     public readonly List<MetricSubcatagory> metrics = new();
     public readonly List<float> convertedValues = new();
     public readonly List<string> convertedValuesText = new();
-    string convertedValue;
-    public float sum;
     public float answer;
+    public float sum;
     public int playerAmount = 2;
+    string convertedValue;
     private string metricText;
     private string convertionOptions;
-    private int score = 0;
-    [SerializeField] UnityEvent onComplete;
 
     public enum MetricSubcatagory
     {
@@ -42,28 +47,29 @@ public class MetricManager : MonoBehaviour
     private void Update()
     {
         CheckGivenAnswers();
+        UpdatePlayerSum();
     }
 
     public void GameSetup()
     {
         ClearAllLists();
-        SetAllButtonsClickedFalse();
+        SetAllClickedButtonsFalse();
         metricText = GetComponent<UIManager>().GenerateMetricUnit();
         GetUasableMetrics();
-        values = GetComponent<SumGeneration>().GenerateValues(6, 1, 101);
+        values = GetComponent<SumGeneration>().GenerateValues(numberButtons.Length, rngMin, rngMax);
         AddConvertionsToList();
         sum = GetComponent<SumGeneration>().MakeMetricSum(playerAmount, values);
         AddMetricToSum();
-        GetComponent<UIManager>().SetMetricStartText(sum, convertedValue, metricText, score);
+        GetComponent<UIManager>().SetMetricStartText(sum, convertedValue, metricText, score, startTime);
         GetComponent<UIManager>().SetButtonValues(numberButtons, convertedValues, convertedValuesText, metricText);
         StopAllCoroutines();
-        StartCoroutine(GetComponent<UIManager>().UpdateTimer(15, 1));
+        StartCoroutine(GetComponent<UIManager>().UpdateTimer(startTime, 1));
     }
 
     //Chooses 3 metrics to convert numbers to
     public void GetUasableMetrics()
     {
-        int rnd = Random.Range(0, 7);
+        int rnd = Random.Range(0, 3);
         if (rnd == 0)
         {
             metrics.Add((MetricSubcatagory)rnd + 1);
@@ -71,7 +77,7 @@ public class MetricManager : MonoBehaviour
             metrics.Add((MetricSubcatagory)rnd + 2);
             convertionOptions = "milli";
         }
-        else if (rnd == 6)
+        else if (rnd == 2)
         {
             metrics.Add((MetricSubcatagory)rnd - 1);
             metrics.Add((MetricSubcatagory)rnd);
@@ -83,9 +89,10 @@ public class MetricManager : MonoBehaviour
             metrics.Add((MetricSubcatagory)rnd - 1);
             metrics.Add((MetricSubcatagory)rnd);
             metrics.Add((MetricSubcatagory)rnd + 1);
+            convertionOptions = "Other";
         }
     }
-    
+
     //Adds the right metric text and converted numbers to their own list to be used for the buttons
     public void AddConvertionsToList()
     {
@@ -134,7 +141,6 @@ public class MetricManager : MonoBehaviour
             GetGivenAnswers();
             CompareAnswerSum(answer);
         }
-
     }
 
     private void GetGivenAnswers()
@@ -146,6 +152,7 @@ public class MetricManager : MonoBehaviour
             if (button.GetComponent<SetButtonValue>().isPressed)
             {
                 Debug.Log(button.GetComponent<SetButtonValue>().isPressed);
+
                 answer += values[counter];
             }
             counter++;
@@ -170,7 +177,7 @@ public class MetricManager : MonoBehaviour
         //show answer was right
         Debug.Log("YAAAAAAAAAAAAAAAY");
         score++;
-        if(score == 3)
+        if(score >= questionCount)
         {
             onComplete.Invoke();
         }
@@ -178,13 +185,28 @@ public class MetricManager : MonoBehaviour
     }
 
     public void WrongAnswer()
-    {     
+    {
         //show answer was wrong
         Debug.Log("BOOOOOOOOOOOOOOOO");
         GameSetup();
     }
 
-    public void SetAllButtonsClickedFalse()
+    public void UpdatePlayerSum()
+    {
+        int counter = 0;
+        float playerSum = 0;
+        foreach (var button in numberButtons)
+        {
+            if (button.GetComponent<SetButtonValue>().isPressed)
+            {
+                playerSum += values[counter];
+            }
+            GetComponent<UIManager>().UpdatePlayerMetricSum(playerSum);
+            counter++;
+        }
+    }
+
+    public void SetAllClickedButtonsFalse()
     {
         foreach (var buttom in numberButtons)
         {
@@ -199,4 +221,5 @@ public class MetricManager : MonoBehaviour
         convertedValuesText.Clear();
         metrics.Clear();
     }
+
 }
