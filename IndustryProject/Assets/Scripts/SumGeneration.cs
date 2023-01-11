@@ -11,6 +11,7 @@ public class SumGeneration : MonoBehaviour
     public List<float> values = new();
     public float answer { get; private set; }
 
+    public string correctOperator = "";
 
 
     //Generates values for the buttons and sum
@@ -29,7 +30,7 @@ public class SumGeneration : MonoBehaviour
         plus,
         min,
         times,
-        divided
+        divided     
     }
 
     public void MakeSum(int buttonAmount)
@@ -67,22 +68,29 @@ public class SumGeneration : MonoBehaviour
     public float MakeAnswer(float left, float right)
     {
         MathOperators mop = (MathOperators)Random.Range(0, 4);
+        
         Debug.Log(mop);
         switch (mop)
         {
             case MathOperators.plus:
+                correctOperator = "+";
                 return left + right;
             case MathOperators.min:
+                correctOperator = "-";
                 return left - right;
             case MathOperators.times:
+                correctOperator = "x";
                 return left * right;
             case MathOperators.divided:
+                correctOperator = ":";
                 return left / right;
             default:
                 break;
         }
         return 0;
     }
+
+    
     #endregion
 
     #region Metric

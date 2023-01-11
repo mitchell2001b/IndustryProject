@@ -91,7 +91,7 @@ public class MinigameManager : MonoBehaviour
             string op = GetComponent<UIManager>().SetOperator(counter);
             button.GetComponent<SetButtonValue>().SetOperatorButtonValue(op);
             counter++;
-        }
+        } 
     }
 
     public void UpdateSum()
@@ -104,12 +104,16 @@ public class MinigameManager : MonoBehaviour
             sum = a * b;
         else if (mathOperator == "/")
             sum = a / b;
+
+        Debug.Log(sum + "update");
     }
 
     public void CheckAnswer()
     {
+        Debug.Log("lets check");
         if ((float)Math.Round(sum,2) == questionAnswer)
         {
+            
             sound.playButton();
             correctQuestionCount++;
             if(correctQuestionCount >= questionCount)
@@ -122,6 +126,13 @@ public class MinigameManager : MonoBehaviour
                 StartGame();
             }
         }
+        else
+        {
+            Debug.Log(sum);
+            float t = (float)Math.Round(sum, 2);
+            Debug.Log(t.ToString());
+            Debug.Log("wrong");
+        }
     }
 
     public void StartGame()
@@ -130,12 +141,13 @@ public class MinigameManager : MonoBehaviour
         bTurn = false;
         a = 0;
         b = 0;
-        mathOperator = "";
+      
         GetComponent<SumGeneration>().values.Clear();
         SetButtonValues();
         GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
         questionAnswer = GetComponent<SumGeneration>().answer;
-        sumString = " = " + questionAnswer;
+        mathOperator = GetComponent<SumGeneration>().correctOperator;
+        sumString = " ? " + mathOperator + " ? = " + questionAnswer;
         sumText.text = sumString;
     }
 }
