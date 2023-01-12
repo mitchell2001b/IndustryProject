@@ -96,16 +96,18 @@ public class MinigameManager : MonoBehaviour
 
     public void UpdateSum()
     {
+        Debug.Log(a + "dit is a" + b + "dit is b");
         if (mathOperator == "+")
             sum = a + b;
         else if (mathOperator == "-")
             sum = a - b;
-        else if (mathOperator == "*")
+        else if (mathOperator == "*" || mathOperator == "x")
             sum = a * b;
-        else if (mathOperator == "/")
+        else if (mathOperator == "/" || mathOperator == ":")
             sum = a / b;
 
         Debug.Log(sum + "update");
+        
     }
 
     public void CheckAnswer()
@@ -128,9 +130,7 @@ public class MinigameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(sum);
-            float t = (float)Math.Round(sum, 2);
-            Debug.Log(t.ToString());
+            
             Debug.Log("wrong");
         }
     }
