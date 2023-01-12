@@ -64,7 +64,7 @@ public class MetricManager : MonoBehaviour
         GetComponent<UIManager>().SetMetricStartText(sum, convertedValue, metricText, score, startTime);
         GetComponent<UIManager>().SetButtonValues(numberButtons, convertedValues, convertedValuesText, metricText);
         StopAllCoroutines();
-        if(this.gameObject.activeSelf)
+        if(gameObject.activeSelf)
         {
             StartCoroutine(GetComponent<UIManager>().UpdateTimer(startTime, 1));
         }
@@ -187,7 +187,11 @@ public class MetricManager : MonoBehaviour
         {
             onComplete.Invoke();
         }
-        GameSetup();
+        else
+        {
+            GameSetup();
+        }
+       
     }
 
     public void WrongAnswer()
