@@ -46,6 +46,7 @@ public class SetButtonValue : MonoBehaviour
     public void SetPressedFalse()
     {
         isPressed = false;
+        ChangeColor();
     }
 
     public void ChangeColor()
