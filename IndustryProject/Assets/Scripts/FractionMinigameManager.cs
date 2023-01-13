@@ -53,7 +53,7 @@ public class FractionMinigameManager : MonoBehaviour
     private void CheckAnswer()
     {
         float givenAnswer = topAnswer/ botAnswer;
-        givenAnswer = (float)Math.Round(givenAnswer, 2);
+        givenAnswer = (float)Math.Round(givenAnswer, 3);
         if (givenAnswer == answer)
         {
             CorrectAnswer();

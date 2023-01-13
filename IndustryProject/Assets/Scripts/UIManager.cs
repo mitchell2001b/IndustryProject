@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
 
     #region Fraction
     public void SetFractionText(int totalQuestionCount, int score)
-    {    
+    {
         scoreText.text = $"{score}/{totalQuestionCount} correct";
     }
 
