@@ -28,10 +28,6 @@ public class MinigameManager : MonoBehaviour
     bool bTurn;
     [SerializeField] int questionCount;
     private int correctQuestionCount = 0;
-    /// the times table you want to generate from. if this is 1 the smallest times table will be 1.
-    public int timesTableStart = 1;
-    /// the times table you want to generate to. if this is 11 the biggest times table will be 10.
-    public int timesTableEnd = 21;
 
     public UnityEvent onComplete;
 
@@ -78,13 +74,12 @@ public class MinigameManager : MonoBehaviour
 
     public void SetButtonValues()
     {
-        int rnd;
+        List<float> numbers = GetComponent<SumGeneration>().values;
         int counter = 0;
         foreach (var button in numberButtons)
         {
-            rnd = Random.Range(timesTableStart, timesTableEnd);
-            button.GetComponent<SetButtonValue>().SetNumberButtonValue(rnd);
-            GetComponent<SumGeneration>().values.Add(rnd);
+            button.GetComponent<SetButtonValue>().SetNumberButtonValue(numbers[counter]);
+            counter++;
         }
         foreach (var button in operatorButtons)
         {
@@ -101,9 +96,9 @@ public class MinigameManager : MonoBehaviour
             sum = a + b;
         else if (mathOperator == "-")
             sum = a - b;
-        else if (mathOperator == "*" || mathOperator == "x")
+        else if (mathOperator == "x")
             sum = a * b;
-        else if (mathOperator == "/" || mathOperator == ":")
+        else if (mathOperator == ":")
             sum = a / b;
 
         Debug.Log(sum + "update");
@@ -143,10 +138,11 @@ public class MinigameManager : MonoBehaviour
         b = 0;
       
         GetComponent<SumGeneration>().values.Clear();
-        SetButtonValues();
-        GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
+        //GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
+        GetComponent<SumGeneration>().GenerateSum(numberButtons.Length);
         questionAnswer = GetComponent<SumGeneration>().answer;
         mathOperator = GetComponent<SumGeneration>().correctOperator;
+        SetButtonValues();
         sumString = " ? " + mathOperator + " ? = " + questionAnswer;
         sumText.text = sumString;
     }
