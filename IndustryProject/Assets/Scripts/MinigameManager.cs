@@ -30,8 +30,8 @@ public class MinigameManager : MonoBehaviour
     private int correctQuestionCount = 0;
 
     public UnityEvent onComplete;
+    private bool operatorVisible;
 
-    
     public enum MathOperators
     {
         plus,
@@ -145,5 +145,57 @@ public class MinigameManager : MonoBehaviour
         SetButtonValues();
         sumString = " ? " + mathOperator + " ? = " + questionAnswer;
         sumText.text = sumString;
+    }
+
+    public void GenerateQuiestiontype()
+    {
+        int rnd = Random.Range(0, 2);
+
+        if (rnd == 0)
+            operatorVisible = true;
+        else
+            operatorVisible = false;
+
+
+        if (operatorVisible)
+            QuestionWithOperator();
+        else
+            QuestionWithoutOperator();
+
+    }
+
+    public void QuestionWithoutOperator()
+    {
+        SetTurbBoolToDefault(true, false);
+        a = 0;
+        mathOperator = "";
+        GetComponent<SumGeneration>().values.Clear();
+        SetButtonValues();
+        GetComponent<SumGeneration>().GenerateSum(numberButtons.Length);
+        questionAnswer = GetComponent<SumGeneration>().answer;
+        sumString = "? ? " + b + " = " + questionAnswer;
+        sumText.text = sumString;
+    }
+
+    public void QuestionWithOperator()
+    {
+        SetTurbBoolToDefault(true, false);
+        int rnd = Random.Range(0, 4);
+        a = 0;
+        b = 0;
+        mathOperator = "";
+        GetComponent<SumGeneration>().values.Clear();
+        SetButtonValues();
+        GetComponent<SumGeneration>().GenerateSum(numberButtons.Length);
+        SetOperatorsAutomatic(rnd);
+        questionAnswer = GetComponent<SumGeneration>().answer;
+        sumString = "? " + mathOperator + " ? " + " = " + questionAnswer;
+        sumText.text = sumString;
+    }
+
+    private void SetTurbBoolToDefault(bool aTurn, bool bTurn)
+    {
+        this.aTurn = aTurn;
+        this.bTurn = bTurn;
     }
 }
