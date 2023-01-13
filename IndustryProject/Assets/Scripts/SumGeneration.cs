@@ -11,6 +11,7 @@ public class SumGeneration : MonoBehaviour
     public List<float> values = new();
     List<int> doubles = new();
     public float answer { get; private set; }
+    public float inputB;
 
     public string correctOperator = "";
 
@@ -86,6 +87,7 @@ public class SumGeneration : MonoBehaviour
                 correctOperator = "+";
                 GenerateValues(buttonAmount, plusMinStart, plusMinEnd);
                 answer = values[doubles[0]] + values[doubles[1]];
+                inputB = values[doubles[1]];
                 break;
             case MathOperators.min:
                 correctOperator = "-";
@@ -96,6 +98,7 @@ public class SumGeneration : MonoBehaviour
                 correctOperator = "x";
                 GenerateValues(buttonAmount, timesStart, timesEnd);
                 answer = values[doubles[0]] * values[doubles[1]];
+                inputB = values[doubles[1]];
                 break;
             case MathOperators.divided:
                 correctOperator = ":";
@@ -134,10 +137,12 @@ public class SumGeneration : MonoBehaviour
         if (number1 > number2)
         {
             answer = number1 - number2;
+            inputB = number2;
         }
         else
         {
             answer = number2 - number1;
+            inputB = number1;
         }
     }
 
@@ -152,6 +157,7 @@ public class SumGeneration : MonoBehaviour
                 GenerateValues(buttonAmount, timesStart, timesEnd);
                 GetValues(buttonAmount);
                 answer = values[doubles[0]] / values[doubles[1]];
+                inputB = values[doubles[1]];
             }
         }
         else
@@ -163,6 +169,7 @@ public class SumGeneration : MonoBehaviour
                 GenerateValues(buttonAmount, timesStart, timesEnd);
                 GetValues(buttonAmount);
                 answer = values[doubles[1]] / values[doubles[0]];
+                inputB = values[doubles[0]];
             }
         }
     }

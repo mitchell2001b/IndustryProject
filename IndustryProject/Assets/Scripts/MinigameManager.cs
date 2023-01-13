@@ -42,7 +42,7 @@ public class MinigameManager : MonoBehaviour
 
     void Start()
     { 
-        StartGame();
+        GenerateQuiestiontype();
     }
 
     public void SetNumbers()
@@ -75,17 +75,18 @@ public class MinigameManager : MonoBehaviour
     public void SetButtonValues()
     {
         List<float> numbers = GetComponent<SumGeneration>().values;
-        int counter = 0;
+        int counterNumbers = 0;
+        int counterOperators = 0;
         foreach (var button in numberButtons)
         {
-            button.GetComponent<SetButtonValue>().SetNumberButtonValue(numbers[counter]);
-            counter++;
+            button.GetComponent<SetButtonValue>().SetNumberButtonValue(numbers[counterNumbers]);
+            counterNumbers++;
         }
         foreach (var button in operatorButtons)
         {
-            string op = GetComponent<UIManager>().SetOperator(counter);
+            string op = GetComponent<UIManager>().SetOperator(counterOperators);
             button.GetComponent<SetButtonValue>().SetOperatorButtonValue(op);
-            counter++;
+            counterOperators++;
         } 
     }
 
@@ -108,7 +109,7 @@ public class MinigameManager : MonoBehaviour
     public void CheckAnswer()
     {
         Debug.Log("lets check");
-        if ((float)Math.Round(sum,2) == questionAnswer)
+        if (sum == questionAnswer)
         {
             
             sound.playButton();
@@ -120,7 +121,7 @@ public class MinigameManager : MonoBehaviour
             }
             else
             {
-                StartGame();
+                GenerateQuiestiontype();
             }
         }
         else
@@ -147,6 +148,21 @@ public class MinigameManager : MonoBehaviour
         sumText.text = sumString;
     }
 
+    public void SetOperatorsAutomatic(int rnd)
+    {
+        if (rnd == 0)
+            mathOperator = "+";
+        else if (rnd == 1)
+            mathOperator = "-";
+        else if (rnd == 2)
+            mathOperator = "x";
+        else if (rnd == 3)
+            mathOperator = ":";
+
+        GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
+        UpdateSum();
+    }
+
     public void GenerateQuiestiontype()
     {
         int rnd = Random.Range(0, 2);
@@ -170,9 +186,10 @@ public class MinigameManager : MonoBehaviour
         a = 0;
         mathOperator = "";
         GetComponent<SumGeneration>().values.Clear();
-        SetButtonValues();
         GetComponent<SumGeneration>().GenerateSum(numberButtons.Length);
+        b = GetComponent<SumGeneration>().inputB;
         questionAnswer = GetComponent<SumGeneration>().answer;
+        SetButtonValues();
         sumString = "? ? " + b + " = " + questionAnswer;
         sumText.text = sumString;
     }
@@ -180,16 +197,18 @@ public class MinigameManager : MonoBehaviour
     public void QuestionWithOperator()
     {
         SetTurbBoolToDefault(true, false);
-        int rnd = Random.Range(0, 4);
+        aTurn = true;
+        bTurn = false;
         a = 0;
         b = 0;
+
         mathOperator = "";
         GetComponent<SumGeneration>().values.Clear();
-        SetButtonValues();
         GetComponent<SumGeneration>().GenerateSum(numberButtons.Length);
-        SetOperatorsAutomatic(rnd);
+        mathOperator = GetComponent<SumGeneration>().correctOperator;
         questionAnswer = GetComponent<SumGeneration>().answer;
-        sumString = "? " + mathOperator + " ? " + " = " + questionAnswer;
+        SetButtonValues();
+        sumString = "? " + mathOperator + " ?  = " + questionAnswer;
         sumText.text = sumString;
     }
 
