@@ -87,7 +87,12 @@ public class MinigameManager : MonoBehaviour
             string op = GetComponent<UIManager>().SetOperator(counterOperators);
             button.GetComponent<SetButtonValue>().SetOperatorButtonValue(op);
             counterOperators++;
-        } 
+
+            if (operatorVisible)
+                button.SetActive(false);
+            else
+                button.SetActive(true);
+        }
     }
 
     public void UpdateSum()
@@ -101,6 +106,7 @@ public class MinigameManager : MonoBehaviour
             sum = a * b;
         else if (mathOperator == ":")
             sum = a / b;
+
 
         Debug.Log(sum + "update");
         
