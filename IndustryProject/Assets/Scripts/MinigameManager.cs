@@ -51,14 +51,15 @@ public class MinigameManager : MonoBehaviour
         if (aTurn)
         {
             a = float.Parse(clickedButton.name);
-            aTurn = false;
-            bTurn = true;
+            if (operatorVisible)
+            {
+                SetTurbBool(false, true);
+            }
         }
         else if (bTurn)
         {
             b = float.Parse(clickedButton.name);
-            aTurn = true;
-            bTurn = false;
+            SetTurbBool(true, false);
         }
         GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
         UpdateSum();
@@ -188,7 +189,7 @@ public class MinigameManager : MonoBehaviour
 
     public void QuestionWithoutOperator()
     {
-        SetTurbBoolToDefault(true, false);
+        SetTurbBool(true, false);
         a = 0;
         mathOperator = "";
         GetComponent<SumGeneration>().values.Clear();
@@ -202,7 +203,7 @@ public class MinigameManager : MonoBehaviour
 
     public void QuestionWithOperator()
     {
-        SetTurbBoolToDefault(true, false);
+        SetTurbBool(true, false);
         aTurn = true;
         bTurn = false;
         a = 0;
@@ -218,7 +219,7 @@ public class MinigameManager : MonoBehaviour
         sumText.text = sumString;
     }
 
-    private void SetTurbBoolToDefault(bool aTurn, bool bTurn)
+    private void SetTurbBool(bool aTurn, bool bTurn)
     {
         this.aTurn = aTurn;
         this.bTurn = bTurn;
