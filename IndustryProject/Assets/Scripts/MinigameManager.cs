@@ -17,6 +17,7 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] GameObject[] numberButtons;
     [SerializeField] GameObject[] operatorButtons;
     [SerializeField] PlaySound sound;
+    [SerializeField] PlaySound badSound;
     public TextMeshProUGUI sumText;
     float a;
     float b;
@@ -28,6 +29,7 @@ public class MinigameManager : MonoBehaviour
     bool bTurn;
     [SerializeField] int questionCount;
     private int correctQuestionCount = 0;
+    private int givenAnswers = 0;
 
     public UnityEvent onComplete;
     private bool operatorVisible;
@@ -41,7 +43,7 @@ public class MinigameManager : MonoBehaviour
     }
 
     void Start()
-    { 
+    {
         GenerateQuiestiontype();
     }
 
@@ -110,20 +112,21 @@ public class MinigameManager : MonoBehaviour
 
 
         Debug.Log(sum + "update");
-        
+
     }
 
     public void CheckAnswer()
     {
-        Debug.Log("lets check");
+        givenAnswers++;
+        Debug.Log("lets check" + " - " + givenAnswers);
         if (sum == questionAnswer)
         {
-            
+            givenAnswers = 0;
             sound.playButton();
             correctQuestionCount++;
-            if(correctQuestionCount >= questionCount)
+            if (correctQuestionCount >= questionCount)
             {
-                minigameTransitionHandler.RoomTransition(MinigameTransitionHandler.RoomType.sumPuzzle);               
+                minigameTransitionHandler.RoomTransition(MinigameTransitionHandler.RoomType.sumPuzzle);
                 onComplete?.Invoke();
             }
             else
@@ -131,10 +134,25 @@ public class MinigameManager : MonoBehaviour
                 GenerateQuiestiontype();
             }
         }
-        else
+        else if (sum != questionAnswer && givenAnswers >= 2)
         {
-            
-            Debug.Log("wrong");
+            givenAnswers = 0;
+            if (operatorVisible)
+            {
+                a = 0;
+                b = 0;
+                GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
+                badSound.playButton();
+                Debug.Log("wrong");
+            }
+            else
+            {
+                a = 0;
+                mathOperator = "?";
+                GetComponent<UIManager>().UpdateAnswerText(questionAnswer, a, b, mathOperator);
+                badSound.playButton();
+                Debug.Log("wrong");
+            }
         }
     }
 
@@ -144,7 +162,7 @@ public class MinigameManager : MonoBehaviour
         bTurn = false;
         a = 0;
         b = 0;
-      
+
         GetComponent<SumGeneration>().values.Clear();
         //GetComponent<SumGeneration>().MakeSum(numberButtons.Length);
         GetComponent<SumGeneration>().GenerateSum(numberButtons.Length);

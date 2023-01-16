@@ -44,37 +44,6 @@ public class SumGeneration : MonoBehaviour
         divided
     }
 
-    public void MakeSum(int buttonAmount)
-    {
-        int rnd;
-        int previousNumber = 0;
-        float number1 = 0;
-        float number2 = 0;
-        for (int i = 0; i < 2; i++)
-        {
-            rnd = Random.Range(0, buttonAmount);
-            if (i == 0)
-            {
-                number1 = values[rnd];
-                previousNumber = rnd;
-            }
-            else if (i == 1)
-            {
-                if (previousNumber != rnd)
-                    number2 = values[rnd];
-                else
-                {
-                    while (previousNumber == rnd)
-                    {
-                        rnd = Random.Range(0, buttonAmount);
-                        number2 = values[rnd];
-                    }
-                }
-            }
-        }
-        //answer = (float)Math.Round(GenerateSum(number1, number2), 2);
-        Debug.Log(number1 + " " + number2);
-    }
 
     public void GenerateSum(int buttonAmount)
     {
@@ -108,6 +77,7 @@ public class SumGeneration : MonoBehaviour
             default:
                 break;
         }
+        Debug.Log(values[doubles[0]] + " ------------------- " + values[doubles[1]]);
     }
 
     public void GetValues(int buttonAmount)

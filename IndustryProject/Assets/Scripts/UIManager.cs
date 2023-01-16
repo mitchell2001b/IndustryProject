@@ -36,7 +36,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAnswerText(float questionAnswer, float a, float b, string mathOperator)
     {
-        questionAnswer = (float)Math.Round(questionAnswer, 2);
         sumString = a + " " + mathOperator + " " + b + " = " + questionAnswer;
         sumText.text = sumString;
     }
