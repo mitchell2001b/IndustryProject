@@ -32,116 +32,7 @@ public class FractionGenerator : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> topButtonTexts;
     [SerializeField] private List<TextMeshProUGUI> botButtonTexts;
 
-    /*public float Generate()
-    {
-        botValues.Clear();
-        topValues.Clear();
-        answer = 0;
-        
-        while (botValues.Count < 3)
-        {
-            int rnd = Random.Range(botMin, botMax + 1);
-            if (botValues.Contains(rnd) == false)
-            {
-                botValues.Add(rnd);
-            }
-        }
-
-        int botAnswerIndex = Random.Range(0, 3);
-
-        List<int> divisors = new List<int>();
-        for (int i = 1; i <= botValues[botAnswerIndex]; i++)
-        {
-            if (botValues[botAnswerIndex] % i == 0)
-            {
-                divisors.Add(i);
-            }
-        }
-        List<int> multipliers = new List<int>();
-        for (int i = 1; botValues[botAnswerIndex] * i <= maxAnswerValue; i++)
-        {
-            if (botValues[botAnswerIndex] * i < maxAnswerValue)
-            {
-                multipliers.Add(i);
-            }
-        }
-        List<int> allMultipliers = new List<int>();
-        foreach (int multiplier in multipliers)
-        {
-            allMultipliers.Add(multiplier);
-        }
-        foreach (int multiplier in divisors)
-        {
-            allMultipliers.Add(multiplier * -1);
-        }
-
-        while (topValues.Count < 3)
-        {
-            int rnd = Random.Range(1, allMultipliers.Count + 1);
-            rnd--;
-            float tempAnswer;
-            if (allMultipliers[rnd] > 0)
-            {
-                tempAnswer = botValues[botAnswerIndex] * allMultipliers[rnd];
-            }
-            else
-            {
-                tempAnswer = botValues[botAnswerIndex] / allMultipliers[rnd];
-                tempAnswer *= -1;
-            }
-            if (topValues.Contains(tempAnswer) == false)
-            {
-                topValues.Add(tempAnswer);
-            }
-        }
-
-        int topAnswerIndex = Random.Range(1, 4);
-        topAnswerIndex--;
-        if (topValues[topAnswerIndex] > 0)
-        {
-            answer = (float)(topValues[topAnswerIndex] / botValues[botAnswerIndex]);
-        }
-
-        answer = (float)Math.Round(answer, 2);
-
-        answerTxt.text = answer.ToString();
-
-        float piePercent = answer % 1;
-        if (piePercent == 0)
-        {
-            piePercent = 1;
-        }
-        fractionPie.fillAmount = piePercent;
-
-        Vector3 fractionPieLocation = fractionPie.rectTransform.localPosition;
-        switch (answer.ToString().Length)
-        {
-            case 1:
-                fractionPieLocation.x = 211;
-                break;
-            case 2:
-                fractionPieLocation.x = 243;
-                break;
-            case 3:
-                fractionPieLocation.x = 259;
-                break;
-            case 4:
-                fractionPieLocation.x = 303;
-                break;
-            default:
-                fractionPieLocation.x = 345;
-                break;
-        }
-
-        fractionPie.rectTransform.localPosition = fractionPieLocation;
-
-        AssignButtons();
-
-        Debug.Log("top row answer index " + topAnswerIndex);
-        Debug.Log("bottom row answer index " + botAnswerIndex);
-
-        return answer;
-    }*/
+    
 
     public float Generate()
     {
@@ -157,16 +48,11 @@ public class FractionGenerator : MonoBehaviour
                 topValues.Add(rnd);
             }
         }
-
-        int lowestTopValue = topMax + 1;
+      
         int highestTopValue = 0;
 
         foreach (int value in topValues)
-        {
-            if (value < lowestTopValue)
-            {
-                lowestTopValue = value;
-            }
+        {           
             if (value > highestTopValue)
             {
                 highestTopValue = value;
