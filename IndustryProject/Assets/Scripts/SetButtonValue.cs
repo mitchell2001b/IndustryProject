@@ -42,9 +42,22 @@ public class SetButtonValue : MonoBehaviour
             isPressed = false;
         }
     }
-
     public void SetPressedFalse()
     {
         isPressed = false;
+        ChangeColor();
     }
+
+    public void ChangeColor()
+    {
+        if (isPressed)
+        {
+            GetComponent<Image>().color = Color.gray;
+        }
+        else
+        {
+            GetComponent<Image>().color = Color.white;
+        }
+    }
+   
 }
