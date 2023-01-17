@@ -1673,6 +1673,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sumText: {fileID: 0}
+  timerText: {fileID: 0}
+  scoreText: {fileID: 0}
+  playerMetricSum: {fileID: 0}
 --- !u!114 &5242014584880475677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,8 +1689,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fractionGenerator: {fileID: 5242014584880475679}
+  questionCount: 0
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
   timer: {fileID: 0}
   wrongAnswerPenalty: 20
+  sound: {fileID: 0}
 --- !u!114 &5242014584880475679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1702,9 +1710,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   botMin: 1
   botMax: 8
+  topMin: 1
+  topMax: 10
   maxAnswerValue: 20
   answerTxt: {fileID: 5242014584433054312}
-  fractionPie: {fileID: 1388762940}
+  fractionPies: {fileID: 0}
   topButtons:
   - {fileID: 5242014584739479604}
   - {fileID: 5242014583578952178}
@@ -1713,6 +1723,7 @@ MonoBehaviour:
   - {fileID: 5242014584675766155}
   - {fileID: 5242014585228013347}
   - {fileID: 5242014585351048220}
+  pies: []
   topButtonTexts:
   - {fileID: 5242014584738424425}
   - {fileID: 5242014584612499050}
