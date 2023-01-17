@@ -28,7 +28,8 @@ public class KeyTracker : MonoBehaviour
 
     private void UpdateText()
     {
-        keyCounterTxt.text = string.Format("{0}: {1}", keyWord, keyCount);
+        //keyCounterTxt.text = string.Format("{0}: {1}", keyWord, keyCount);
+        keyCounterTxt.text = string.Format(keyCount.ToString());
     }
 
     public void TryOpenDoor()
