@@ -7,14 +7,16 @@ public class MultipleTouch : MonoBehaviour
 {
    
     private List<TouchLocation> touches = new List<TouchLocation>();
-    [SerializeField] int touchec;
-    [SerializeField] int listcount;
+    [SerializeField] int touchCount;
+    [SerializeField] int touchesInListCount;
+    [SerializeField] List<int> ids = new List<int>();
+    
     // Update is called once per frame
     void Update()
     {
         int i = 0;
-        touchec = Input.touchCount;
-        listcount = touches.Count;
+        touchCount = Input.touchCount;
+        touchesInListCount = touches.Count;
         while (i < Input.touchCount)
         {
             if (Input.touchCount <= 0)
@@ -32,7 +34,7 @@ public class MultipleTouch : MonoBehaviour
                 if(EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
                     PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-                    pointerEventData.position = touch.position;
+                    pointerEventData.position = pos;
                     List<RaycastResult> raycastResults = new List<RaycastResult>();
                     EventSystem.current.RaycastAll(pointerEventData, raycastResults);
                     foreach (RaycastResult r in raycastResults)
@@ -42,6 +44,7 @@ public class MultipleTouch : MonoBehaviour
                             if(!r.gameObject.GetComponent<DraggableSprite>().dragLocked)
                             {
                                 Debug.Log("add");
+                                ids.Add(touch.fingerId);
                                 touches.Add(new TouchLocation(touch.fingerId, r.gameObject));
                                 r.gameObject.GetComponent<DraggableSprite>().OnBeginDrag(pointerEventData);
                                 break;
@@ -59,20 +62,21 @@ public class MultipleTouch : MonoBehaviour
                {
                     Debug.Log(touches.Find(x => x.touchId == touch.fingerId).objectToDrag.name);
                     touches.Find(x => x.touchId == touch.fingerId).objectToDrag.GetComponent<DraggableSprite>().OnEndDrag(null);
-                    touches.Remove(touches.Find(x => x.touchId == touch.fingerId));                 
+                    touches.Remove(touches.Find(x => x.touchId == touch.fingerId));
+                    ids.Remove(ids.Find(x => x == touch.fingerId));
                }
 
             }
             else if(touch.phase == TouchPhase.Moved)
             {
-                if(touches.Find(x => x.touchId == touch.fingerId) == null)
+                if(touches.Find(x => x.touchId == touch.fingerId) != null)
                 {
-                    return;
+                    touches.Find(x => x.touchId == touch.fingerId).objectToDrag.transform.position = touch.position;
                 }
-                Vector3 pos = touch.position;
+                //Vector3 pos = touch.position;
                 //Debug.Log("pos" + pos);
                 
-                touches.Find(x => x.touchId == touch.fingerId).objectToDrag.transform.position = pos;
+                
                               
             }
             
