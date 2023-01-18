@@ -6425,7 +6425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &612460221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8157,7 +8157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &748206865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11713,10 +11713,9 @@ MonoBehaviour:
   - {fileID: 1471748985}
   - {fileID: 748206864}
   sound: {fileID: 6865405256231710674}
+  badSound: {fileID: 1811173637098707981}
   sumText: {fileID: 241180483}
   questionCount: 3
-  timesTableStart: 1
-  timesTableEnd: 21
   onComplete:
     m_PersistentCalls:
       m_Calls:
@@ -11809,7 +11808,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values: []
+  inputB: 0
   correctOperator: 
+  timesStart: 1
+  divideStart: 1
+  plusMinStart: 1
+  timesEnd: 20
+  divideEnd: 100
+  plusMinEnd: 1000
   metricValues: []
 --- !u!224 &1001208705
 RectTransform:
@@ -15718,7 +15724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1302856739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16764,7 +16770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1471748986
 MonoBehaviour:
   m_ObjectHideFlags: 0

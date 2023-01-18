@@ -9,9 +9,20 @@ using Random = UnityEngine.Random;
 public class SumGeneration : MonoBehaviour
 {
     public List<float> values = new();
+    List<int> doubles = new();
     public float answer { get; private set; }
+    public float inputB;
 
     public string correctOperator = "";
+
+    /// the number you want to generate from.
+    public int timesStart = 1;
+    public int divideStart = 1;
+    public int plusMinStart = 1;
+    /// the number you want to generate toward.
+    public int timesEnd = 20;
+    public int divideEnd = 100;
+    public int plusMinEnd = 1000;
 
 
     //Generates values for the buttons and sum
@@ -30,67 +41,109 @@ public class SumGeneration : MonoBehaviour
         plus,
         min,
         times,
-        divided     
+        divided
     }
 
-    public void MakeSum(int buttonAmount)
-    {
-        int rnd;
-        int previousNumber = 0;
-        float number1 = 0;
-        float number2 = 0;
-        for (int i = 0; i < 2; i++)
-        {
-            rnd = Random.Range(0, buttonAmount);
-            if (i == 0)
-            {
-                number1 = values[rnd];
-                previousNumber = rnd;
-            }
-            else if (i == 1)
-            {
-                if (previousNumber != rnd)
-                    number2 = values[rnd];
-                else
-                {
-                    while (previousNumber == rnd)
-                    {
-                        rnd = Random.Range(0, buttonAmount);
-                        number2 = values[rnd];
-                    }
-                }
-            }
-        }
-        answer = (float)Math.Round(MakeAnswer(number1, number2), 2);
-        Debug.Log(number1 + " " + number2);
-    }
 
-    public float MakeAnswer(float left, float right)
+    public void GenerateSum(int buttonAmount)
     {
         MathOperators mop = (MathOperators)Random.Range(0, 4);
-        
+        GetValues(buttonAmount);
         Debug.Log(mop);
         switch (mop)
         {
             case MathOperators.plus:
                 correctOperator = "+";
-                return left + right;
+                GenerateValues(buttonAmount, plusMinStart, plusMinEnd);
+                answer = values[doubles[0]] + values[doubles[1]];
+                inputB = values[doubles[1]];
+                break;
             case MathOperators.min:
                 correctOperator = "-";
-                return left - right;
+                GenerateValues(buttonAmount, plusMinStart, plusMinEnd);
+                MakeSumMin(values[doubles[0]], values[doubles[1]]);
+                break;
             case MathOperators.times:
                 correctOperator = "x";
-                return left * right;
+                GenerateValues(buttonAmount, timesStart, timesEnd);
+                answer = values[doubles[0]] * values[doubles[1]];
+                inputB = values[doubles[1]];
+                break;
             case MathOperators.divided:
                 correctOperator = ":";
-                return left / right;
+                GenerateValues(buttonAmount, divideStart, divideEnd);
+                MakeSumDivide(buttonAmount);
+                break;
             default:
                 break;
         }
-        return 0;
+        Debug.Log(values[doubles[0]] + " ------------------- " + values[doubles[1]]);
     }
 
-    
+    public void GetValues(int buttonAmount)
+    {
+        doubles.Clear();
+        for (int i = 0; i < 2; i++)
+        {
+            int rnd = Random.Range(0, buttonAmount);
+            if (!doubles.Contains(rnd))
+            {
+                doubles.Add(rnd);
+            }
+            else
+            {
+                while (doubles.Contains(rnd))
+                {
+                    rnd = Random.Range(0, metricValues.Count);
+                }
+                doubles.Add(rnd);
+            }
+        }
+    }
+
+
+    public void MakeSumMin(float number1, float number2)
+    {
+        if (number1 > number2)
+        {
+            answer = number1 - number2;
+            inputB = number2;
+        }
+        else
+        {
+            answer = number2 - number1;
+            inputB = number1;
+        }
+    }
+
+    public void MakeSumDivide(int buttonAmount)
+    {
+        if (values[doubles[0]] > values[doubles[1]])
+        {
+            answer = values[doubles[0]] / values[doubles[1]];
+            while (answer % 1 != 0)
+            {
+                values.Clear();
+                GenerateValues(buttonAmount, timesStart, timesEnd);
+                GetValues(buttonAmount);
+                answer = values[doubles[0]] / values[doubles[1]];
+                inputB = values[doubles[1]];
+            }
+        }
+        else
+        {
+            answer = values[doubles[1]] / values[doubles[0]];
+            while (answer % 1 != 0)
+            {
+                values.Clear();
+                GenerateValues(buttonAmount, timesStart, timesEnd);
+                GetValues(buttonAmount);
+                answer = values[doubles[1]] / values[doubles[0]];
+                inputB = values[doubles[0]];
+            }
+        }
+    }
+
     #endregion
 
     #region Metric
