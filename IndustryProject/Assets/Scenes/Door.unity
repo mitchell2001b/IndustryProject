@@ -8868,6 +8868,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1132847952}
     - target: {fileID: 6212327430484902986, guid: 47e3b6d0e42b62147891a67ae831384f, type: 3}
+      propertyPath: wrongSound
+      value: 
+      objectReference: {fileID: 916914792}
+    - target: {fileID: 6212327430484902986, guid: 47e3b6d0e42b62147891a67ae831384f, type: 3}
+      propertyPath: correctSound
+      value: 
+      objectReference: {fileID: 6865405256231710674}
+    - target: {fileID: 6212327430484902986, guid: 47e3b6d0e42b62147891a67ae831384f, type: 3}
       propertyPath: questionCount
       value: 3
       objectReference: {fileID: 0}
